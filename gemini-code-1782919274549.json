@@ -1,0 +1,16 @@
+{
+  "name": "Mani Football Analysis Pro",
+  "short_name": "ManiFootball",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1a202c",
+  "theme-color": "#1a202c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/color/512/football.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

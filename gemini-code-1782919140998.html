@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani Football Analysis - App Pro</title>
+    <!-- Lidhja me Manifestin për t'u bërë Aplikacion Celulari -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <style>
+        :root {
+            --primary-color: #1a202c;
+            --accent-color: #3182ce;
+            --success-color: #38a169;
+            --danger-color: #e53e3e;
+            --warning-color: #dd6b20;
+            --light-bg: #f7fafc;
+            --text-dark: #2d3748;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--light-bg); color: var(--text-dark); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .app-container { width: 100%; max-width: 1200px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; margin: 20px; min-height: 80vh; display: flex; flex-direction: column; }
+        .app-header { background: var(--primary-color); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--accent-color); }
+        .logo-area h2 { font-size: 24px; letter-spacing: 1px; color: #fff; }
+        .logo-area span { color: var(--accent-color); font-weight: bold; }
+        .login-screen, .license-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; flex: 1; }
+        .card { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); width: 100%; max-width: 450px; border: 1px solid #e2e8f0; }
+        .card h3 { margin-bottom: 25px; text-align: center; color: var(--primary-color); font-size: 22px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-group select, .form-group input { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 16px; outline: none; }
+        .btn { width: 100%; padding: 12px; background: var(--accent-color); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn:hover { background: #2b6cb0; }
+        .dashboard-layout { display: grid; grid-template-columns: 250px 1fr; flex: 1; min-height: 70vh; }
+        .sidebar { background: #2d3748; color: #fff; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-btn { background: transparent; border: none; color: #cbd5e0; padding: 12px; text-align: left; font-size: 15px; border-radius: 6px; cursor: pointer; width: 100%; }
+        .sidebar-btn.active { background: var(--accent-color); color: white; font-weight: bold; }
+        .main-content { padding: 30px; background: #fcfcfc; }
+        .hidden { display: none !important; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; color: white; }
+        .badge-master { background: var(--danger-color); }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .data-table th, .data-table td { border: 1px solid #edf2f7; padding: 12px; text-align: left; }
+        .data-table th { background: #f7fafc; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- EKRANI 1: Kontrolli i Pagesës / Licencës -->
+    <div id="license-screen" class="license-screen">
+        <div class="card">
+            <h3>Aktivizimi i Aplikacionit</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 20px; text-align: center;">Ju lutem vendosni çelësin e licencës mujore të siguruar nga Mani Football Analysis.</p>
+            <div class="form-group">
+                <label for="license-key">Çelësi i Licencës Zyrtare</label>
+                <input type="text" id="license-key" placeholder="XXXX-XXXX-XXXX">
+            </div>
+            <button onclick="verifikoLicencen()" class="btn">Aktivizo Produktin</button>
+            <p id="license-error" style="color: var(--danger-color); margin-top: 15px; font-size: 14px; text-align: center; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- EKRANI 2: Login-i i Sigurt (Shfaqet vetëm nëse licenca është OK) -->
+    <div id="login-screen" class="login-screen hidden">
+        <div class="card">
+            <h3>Autentifikimi i Sigurt</h3>
+            <div class="form-group">
+                <label for="login-role">Zgjidhni Rolin</label>
+                <select id="login-role">
+                    <option value="president">Presidenti</option>
+                    <option value="drejtor">Drejtori Sportiv</option>
+                    <option value="manager">Team Manager</option>
+                    <option value="akademia">Trajner Akademie (U7 - U19)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Fjalëkalimi</label>
+                <input type="password" id="login-password" placeholder="••••••••">
+            </div>
+            <button onclick="handleLogin()" class="btn">Hyni në Sistem</button>
+            <p id="login-error" style="color: var(--danger-color); margin-top: 15px; font-size: 14px; text-align: center; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- EKRANI 3: Dashboard-i Kryesor -->
+    <div id="main-dashboard" class="dashboard-layout hidden">
+        <aside class="sidebar" id="app-sidebar"></aside>
+        <main class="main-content" id="app-content"></main>
+    </div>
+</div>
+
+<script>
+    // Lista e Licencave të paguara (Këtu shton kodet për ekipet që të paguajnë)
+    const VALIDE_LICENSES = ["SHPRESA-2026-OK", "DINAMO-2026-PRO", "MANI-TEST"];
+    
+    const SECURITY_CONFIG = {
+        'president': { pass: 'president2026', name: 'Presidenti', level: 'MASTER' },
+        'drejtor': { pass: 'drejtor2026', name: 'Drejtori Sportiv', level: 'MASTER' },
+        'manager': { pass: 'manager2026', name: 'Team Manager', level: 'MASTER' },
+        'akademia': { pass: 'trajner2026', name: 'Trajner', level: 'COACH' }
+    };
+
+    function verifikoLicencen() {
+        const key = document.getElementById('license-key').value.trim();
+        if (VALIDE_LICENSES.includes(key)) {
+            localStorage.setItem('app_licensed', 'true'); // E ruan në memorie që mos ta kërkojë më
+            document.getElementById('license-screen').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+        } else {
+            document.getElementById('license-error').innerText = "Licencë e pavlefshme ose e skaduar! Kontaktoni administratorin.";
+        }
+    }
+
+    // Kontrolli automatik në hapje
+    if (localStorage.getItem('app_licensed') === 'true') {
+        document.getElementById('license-screen').classList.add('hidden');
+        document.getElementById('login-screen').classList.remove('hidden');
+    }
+
+    function handleLogin() {
+        const role = document.getElementById('login-role').value;
+        const pass = document.getElementById('login-password').value;
+        if (SECURITY_CONFIG[role].pass === pass) {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('main-dashboard').classList.remove('hidden');
+            buildSidebar(role);
+        } else {
+            document.getElementById('login-error').innerText = "Fjalëkalim i gabuar!";
+        }
+    }
+
+    function buildSidebar(role) {
+        const sidebar = document.getElementById('app-sidebar');
+        sidebar.innerHTML = `<button class="sidebar-btn active">📊 Qendra Kontrollit</button>`;
+        if (SECURITY_CONFIG[role].level === 'MASTER') {
+            sidebar.innerHTML += `
+                <button class="sidebar-btn">⚖️ Kontratat (Team Manager)</button>
+                <button class="sidebar-btn">🏥 Dep. Mjekësor</button>
+                <button class="sidebar-btn">⚽ Akademia</button>
+            `;
+        } else {
+            sidebar.innerHTML += `<button class="sidebar-btn">⚽ Ekipi Im (Numrat Unik)</button>`;
+        }
+        loadPunaJone();
+    }
+
+    function loadPunaJone() {
+        const content = document.getElementById('app-content');
+        content.innerHTML = `
+            <div class="card" style="max-width: 100%;">
+                <h3>E gjithë puna jonë e mëparshme ngarkohet plotësisht këtu!</h3>
+                <p>Tabelat e performancës, regjistrat e moshave dhe analizat e plota janë të integruara brenda këtij aplikacioni të siguruar.</p>
+            </div>
+        `;
+    }
+
+    // Regjistrimi i motorrit PWA (Aplikacionit)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("Aplikacion Mani Football u regjistrua me sukses!"));
+    }
+</script>
+</body>
+</html>
