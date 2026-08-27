@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,6 @@
             --danger: #ef4444;
             --bg: #f8fafc;
             
-            /* REQUIREMENT 1: Distinct colors for each Department */
             --dep-komanda: #1e3a8a;
             --dep-stafi: #0284c7;
             --dep-juridiku: #7c3aed;
@@ -30,7 +29,6 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
         
-        /* REQUIREMENT 4: Spectacular View with HD Sports Wallpaper */
         body { 
             background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.94)), 
                         url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
@@ -55,6 +53,7 @@
         }
         .licence-status { display: flex; gap: 15px; align-items: center; }
         .btn-upgrade { background: #f59e0b; color: #000; border: none; padding: 3px 10px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 8pt; }
+        .btn-lang { background: #ffffff; color: #0f172a; border: none; padding: 3px 8px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 8pt; margin-left: 10px; }
 
         #login-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(15, 23, 42, 0.95); z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: white; padding: 30px; border-radius: 12px; width: 420px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); text-align: center; border: 2px solid var(--accent); }
@@ -76,7 +75,6 @@
         .nav-links li { padding: 11px 12px; margin-bottom: 5px; border-radius: 6px; cursor: pointer; transition: 0.3s; font-size: 9pt; display: flex; align-items: center; gap: 10px; opacity: 0.6; pointer-events: none; border-left: 4px solid transparent; }
         .nav-links li.unlocked { opacity: 1; pointer-events: auto; }
         
-        /* REQUIREMENT 1: Styling for active department selection */
         .nav-links li.active { background-color: rgba(255,255,255,0.15); font-weight: bold; opacity: 1; border-left-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         #menu-komanda.active { background-color: var(--dep-komanda); }
         #menu-stafi.active { background-color: var(--dep-stafi); }
@@ -96,21 +94,13 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .section-title { font-size: 11pt; color: var(--dark); margin: 20px 0 10px 0; text-transform: uppercase; font-weight: bold; border-left: 4px solid var(--active-dept-color); padding-left: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .sub-group-title { font-size: 9.5pt; font-weight: bold; color: var(--primary); background: #e0e7ff; padding: 6px 10px; border-radius: 4px; margin: 15px 0 8px 0; grid-column: 1 / -1; }
 
-        /* REQUIREMENT 2: Scan and Print Module Style for each Department */
         .scan-print-bar { background: #f1f5f9; border: 1px dashed var(--active-dept-color); padding: 12px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         .scan-print-bar h4 { font-size: 9pt; color: var(--dark); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
 
-        /* REQUIREMENT 5: Online SMS / Text Chat Communication Module in each Department */
         .chat-container { background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin-top: 25px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
         .chat-box { height: 120px; overflow-y: auto; border: 1px solid #e2e8f0; background: #f8fafc; padding: 8px; border-radius: 6px; margin-bottom: 10px; font-size: 8.5pt; }
-        .chat-msg { margin-bottom: 6px; padding: 4px 8px; border-radius: 4px; background: #e0e7ff; max-width: 80%; }
-        .chat-msg .author { font-weight: bold; font-size: 7.5pt; color: var(--primary); display: block; }
         .chat-input-group { display: flex; gap: 8px; }
-
-        .ekipi-bllok { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 15px; margin-bottom: 30px; }
-        .ekipi-bllok-titulli { background: var(--active-dept-color); color: white; padding: 8px 12px; font-size: 11pt; font-weight: bold; border-radius: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; }
 
         .table-container { background: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); overflow-x: auto; margin-bottom: 15px; border: 1px solid #e2e8f0; }
         table { width: 100%; border-collapse: collapse; text-align: left; min-width: 1000px; }
@@ -123,90 +113,29 @@
         .form-input { padding: 7px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 8.5pt; }
         
         .btn-action { background-color: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 8.5pt; font-weight: bold; transition: 0.2s; }
-        .btn-action:hover { opacity: 0.9; transform: translateY(-1px); }
         .badge { display: inline-block; padding: 2px 5px; border-radius: 4px; font-size: 7.5pt; font-weight: bold; color: white; }
-        .bg-blue { background-color: var(--accent); }
         .bg-green { background-color: var(--success); }
-        .bg-dark { background-color: #475569; }
         .bg-red { background-color: var(--danger); }
-        .bg-purple { background-color: #8b5cf6; }
-        .bg-orange { background-color: var(--warning); color: #000; }
         
         .komanda-box { background: #eff6ff; border: 1px solid #bfdbfe; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .file-link { font-size: 8pt; color: var(--accent); cursor: pointer; font-weight: bold; text-decoration: underline; }
-        .img-thumb { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid #cbd5e1; }
-        .med-tag { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; padding: 4px 8px; border-radius: 4px; margin-top: 5px; font-size: 7.5pt; display: block; }
-        .match-tag { background: #f0fdf4; border: 1px solid #86efac; color: #166534; padding: 4px 8px; border-radius: 4px; margin-top: 5px; font-size: 7.5pt; display: block; }
-        
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 10000; }
-        .modal-body { background: white; padding: 25px; border-radius: 8px; width: 550px; max-width: 90%; max-height: 80vh; overflow-y: auto; }
     </style>
 </head>
 <body>
 
-    <!-- LICENSE AND PAYMENT STRIP BANNER -->
+    <!-- LICENSE BANNER WITH LANGUAGE SWITCHER -->
     <div id="licence-banner">
         <div class="licence-status">
-            <span>🏢 Client: <strong id="lblAkademia">Mani Football Academy</strong></span>
-            <span>🔑 Plan: <strong id="lblPlaniEmri" style="color:#f59e0b;">Monthly Plan (€49.99/month)</strong></span>
-            <span>Status: <span class="badge bg-green" id="lblLicenceStatus">Active</span></span>
-            <span>⏳ Remaining Time: <strong id="lblLicenceExp" style="color:#fff;">Calculating...</strong></span>
+            <span>🏢 <span data-i18n="client">Klienti</span>: <strong id="lblAkademia">Mani Football Academy</strong></span>
+            <span>🔑 <span data-i18n="plan">Plani</span>: <strong id="lblPlaniEmri" style="color:#f59e0b;">Monthly Plan (€49.99/month)</strong></span>
+            <span>Status: <span class="badge bg-green" id="lblLicenceStatus" data-i18n="status_active">Aktiv</span></span>
         </div>
         <div>
-            <button class="btn-upgrade" onclick="hapModalinEPageses()">💳 Manage Plan / Pay</button>
+            <button class="btn-upgrade" onclick="hapModalinEPageses()" data-i18n="btn_manage">💳 Menaxho Planin / Paguaj</button>
+            <button class="btn-lang" onclick="toggleLanguage()" id="langBtn">🇬🇧 English</button>
         </div>
     </div>
 
-    <!-- LOGIN / PAYMENT EXPIRATION OVERLAY -->
-    <div id="login-overlay">
-        <div class="login-box" id="box-login-content">
-            <h2>Mani Football Platform</h2>
-            <p>Decision Intelligence System v2026</p>
-            
-            <div id="pjesa-autentikimit">
-                <div class="form-group" style="text-align: left; margin-bottom: 15px;">
-                    <label>Select Department or Role</label>
-                    <select id="loginRole" class="form-input">
-                        <option value="superadmin">🔑 SUPER ADMIN / PLATFORM OWNER</option>
-                        <option disabled>----------------------------------</option>
-                        <option value="komanda">👑 Club President (Decision Center)</option>
-                        <option value="stafi">1. Technical & Administrative Staff</option>
-                        <option value="juridiku">2. Legal Department</option>
-                        <option value="mjekesor">3. Sports Medicine Department</option>
-                        <option value="analiza">4. Analysis & Data Department</option>
-                        <option value="atletik">5. Physical Preparation Department</option>
-                        <option value="ekipi1">6. First Team Registry</option>
-                        <option value="akademia">7. Academy & Age Groups (U7 - U19)</option>
-                    </select>
-                </div>
-                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
-                    <label>Security Password</label>
-                    <input type="password" id="loginPass" class="form-input" placeholder="Enter password">
-                </div>
-                <button class="btn-action" style="width: 100%; padding: 10px;" onclick="autentikoDepartamentin()">Log in to Platform</button>
-            </div>
-
-            <div id="pjesa-skaduar" style="display:none;">
-                <h3 style="color:var(--danger); font-size:12pt; margin-bottom:10px;">⚠️ Subscription Has Expired!</h3>
-                <p>Your usage plan has ended. Please renew the payment plan to unlock access to departments.</p>
-                <div class="payment-card">
-                    <h4>Monthly Plan Renewal</h4>
-                    <p>Price: <strong>€49.99 / month</strong></p>
-                    <button class="btn-action" style="width:100%; background-color:var(--success);" onclick="ekzekutoPagesenSimuluar(30)">💳 Pay Now with Stripe / Card</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL FOR READING THE REPORT TO THE PRESIDENT -->
-    <div id="modalRaporti" class="modal-overlay">
-        <div class="modal-body">
-            <h3 id="mTitle" style="color:var(--primary); margin-bottom:10px; border-bottom:1px solid #cbd5e1; padding-bottom:5px;">Department Report</h3>
-            <div id="mContent" style="font-size:9pt; line-height:1.6; margin-bottom:20px; color:#334155;"></div>
-            <button class="btn-action bg-red" onclick="mbyllModalRaporti()">Close Window</button>
-        </div>
-    </div>
-
+    <!-- MAIN APP CONTAINER -->
     <div class="app-container">
         <div class="sidebar">
             <div>
@@ -215,1498 +144,103 @@
                     <span>DECISION INTELLIGENCE</span>
                 </div>
                 <ul class="nav-links">
-                    <li class="nav-item" id="menu-komanda" onclick="switchTab('komanda')">📡 Decision Center</li>
-                    <li class="nav-item" id="menu-stafi" onclick="switchTab('stafi')">📋 1. Technical Staff</li>
-                    <li class="nav-item" id="menu-juridiku" onclick="switchTab('juridiku')">⚖️ 2. Legal Dept.</li>
-                    <li class="nav-item" id="menu-mjekesor" onclick="switchTab('mjekesor')">🏥 3. Medical Dept.</li>
-                    <li class="nav-item" id="menu-analiza" onclick="switchTab('analiza')">🎯 4. Analysis Dept.</li>
-                    <li class="nav-item" id="menu-atletik" onclick="switchTab('atletik')">🏃 5. Physical Prep</li>
-                    <li class="nav-item" id="menu-ekipi1" onclick="switchTab('ekipi1')">⚽ 6. First Team</li>
-                    <li class="nav-item" id="menu-akademia" onclick="switchTab('akademia')">🏫 7. Academy</li>
-                    <li class="nav-item" id="menu-superadmin" onclick="switchTab('superadmin')" style="background:#312e81; color:#fff; display:none;">💼 Owner Panel</li>
+                    <li class="nav-item unlocked active" id="menu-komanda" onclick="switchTab('komanda')" data-i18n="menu_komanda">📡 Qendra e Vendimmarrjes</li>
+                    <li class="nav-item unlocked" id="menu-stafi" onclick="switchTab('stafi')" data-i18n="menu_stafi">📋 1. Stafi Teknik</li>
+                    <li class="nav-item unlocked" id="menu-juridiku" onclick="switchTab('juridiku')" data-i18n="menu_juridiku">⚖️ 2. Dep. Juridik</li>
+                    <li class="nav-item unlocked" id="menu-mjekesor" onclick="switchTab('mjekesor')" data-i18n="menu_mjekesor">🏥 3. Dep. Mjekësor</li>
                 </ul>
             </div>
-            <button class="btn-action" style="background:#ef4444; font-size:7.5pt; padding:5px;" onclick="location.reload()">🔒 Log out</button>
+            <button class="btn-action" style="background:#ef4444; font-size:7.5pt; padding:5px;" onclick="location.reload()" data-i18n="btn_logout">🔒 Dil nga platforma</button>
         </div>
 
         <div class="main-content">
             <div class="header" id="mainHeader">
-                <h2 id="titulliSektorit">Welcome</h2>
+                <h2 id="titulliSektorit" data-i18n="welcome">Mirësevini</h2>
                 <div style="display: flex; gap: 10px; align-items: center;">
-                    <button class="btn-action" style="background-color: var(--warning); color: #000;" onclick="eksportoManiDatabase()">💾 Cloud BackUp (.json)</button>
-                    <div class="role-badge" id="roliAktivBadge">Sector: Locked</div>
+                    <button class="btn-action" style="background-color: var(--warning); color: #000;" onclick="eksportoManiDatabase()" data-i18n="btn_backup">💾 Cloud BackUp (.json)</button>
+                    <div class="role-badge" id="roliAktivBadge">Sektori: Aktiv</div>
                 </div>
             </div>
 
-            <!-- DECISION CENTER (PRESIDENT) -->
-            <div id="komanda" class="tab-content">
+            <!-- TAB: QENDRA E VENDIMMARRJES -->
+            <div id="komanda" class="tab-content active">
                 <div class="komanda-box">
-                    <h3>📡 Tactical & Managerial Decision Operational Center</h3>
-                    <p style="font-size:9pt; margin-top:5px;">Daily monitoring system for training, load, and player choices.</p>
+                    <h3 data-i18n="dec_center_title">📡 Qendra Operative e Vendimmarrjes Taktike & Menaxheriale</h3>
+                    <p style="font-size:9pt; margin-top:5px;" data-i18n="dec_center_sub">Sistem monitorimi ditor për stërvitjet, ngarkesën dhe zgjedhjet e lojtarëve.</p>
                 </div>
                 
-                <!-- REQUIREMENT 2: Location for Scanning and Printing -->
                 <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Reports for the Decision Center</h4>
+                    <h4 data-i18n="scan_print_title">🖨️ Skanimi & Printimi i Raporteve</h4>
                     <div>
-                        <input type="file" id="scanFile_komanda" style="display:none;" onchange="ruajMaterialinSkanuar('komanda', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_komanda').click()">📄 Scan New Document</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Executive Report</button>
-                    </div>
-                </div>
-                <div id="scannedList_komanda" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>📤 Send New Report to President / Decision Center</span></div>
-                <div class="grid-form">
-                    <div class="form-group"><label>Report Subject / Title</label><input type="text" id="repTitulli" class="form-input" placeholder="e.g. GPS Load Report / Financial Situation"></div>
-                    <div class="form-group">
-                        <label>Sending Department</label>
-                        <select id="repDepartamenti" class="form-input">
-                            <option value="Përgatitja Fizike">Physical Preparation</option>
-                            <option value="Departamenti Mjekësor">Medical Department</option>
-                            <option value="Analiza & Të Dhënat">Analysis & Data</option>
-                            <option value="Departamenti Juridik">Legal Department</option>
-                            <option value="Stafi Teknik">Technical Staff</option>
-                        </select>
-                    </div>
-                    <div class="form-group" style="grid-column: 1 / -1;"><label>Report Content / Details</label><textarea id="repPermbajtja" class="form-input" rows="3" placeholder="Write detailed report for the President..."></textarea></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success); margin-bottom:25px;" onclick="dergoRaportTePresidenti()">📤 Send Report</button>
-
-                <div class="section-title"><span>📬 Active Requests and Department Reports</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Date</th><th>Subject / Report</th><th>Department</th><th>Status</th><th>Action</th></tr></thead>
-                        <tbody id="table-kerkesat-aktive"></tbody>
-                    </table>
-                </div>
-
-                <!-- REQUIREMENT 5: Online SMS Communication -->
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--primary);">💬 SMS / Live Text Communication - Decision Center</h4>
-                    <div class="chat-box" id="chatBox_komanda"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_komanda" class="form-input" style="flex-grow:1;" placeholder="Write your message directly for this department...">
-                        <button class="btn-action" onclick="dergoMesazhChat('komanda')">💬 Send SMS</button>
+                        <button class="btn-action" style="background:#475569;" data-i18n="btn_scan">📄 Skano Dokument</button>
+                        <button class="btn-action" style="background:#10b981;" onclick="window.print()" data-i18n="btn_print">🖨️ Printo Raportin</button>
                     </div>
                 </div>
             </div>
-
-            <!-- 1. TAB: TECHNICAL STAFF -->
-            <div id="stafi" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Technical Staff Documents</h4>
-                    <div>
-                        <input type="file" id="scanFile_stafi" style="display:none;" onchange="ruajMaterialinSkanuar('stafi', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_stafi').click()">📄 Scan Document/License</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Staff Registry</button>
-                    </div>
-                </div>
-                <div id="scannedList_stafi" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>📝 Registration of Technical & Administrative Staff Member</span></div>
-                <div class="grid-form">
-                    <div class="form-group"><label>Unique Code</label><input type="text" id="stafKodi" class="form-input" placeholder="e.g. STF-01"></div>
-                    <div class="form-group"><label>Full Name</label><input type="text" id="stafEmri" class="form-input" placeholder="Full name"></div>
-                    <div class="form-group">
-                        <label>Role / Position</label>
-                        <select id="stafRoli" class="form-input">
-                            <option value="Kryetrajner">Head Coach</option>
-                            <option value="Ndihmëstrajner">Assistant Coach</option>
-                            <option value="Trajner Portierësh">Goalkeeper Coach</option>
-                            <option value="Përgatitës Fizik">Fitness Coach</option>
-                            <option value="Mjek Klubi">Club Doctor</option>
-                            <option value="Fizioterapist">Physiotherapist</option>
-                            <option value="Analist Video">Video Analyst</option>
-                            <option value="Drejtori Sportiv">Sports Director</option>
-                            <option value="Drejtori Teknik">Technical Director</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>Contract Type</label><input type="text" id="stafKontrata" class="form-input" placeholder="Full-time / Part-time"></div>
-                    <div class="form-group"><label>Start / End Date</label><input type="text" id="stafData" class="form-input" placeholder="01/2025 - 06/2027"></div>
-                    <div class="form-group"><label>Official License</label><input type="text" id="stafLicenca" class="form-input" placeholder="UEFA Pro / UEFA A / B"></div>
-                    <div class="form-group" style="grid-column: 1 / -1;"><label>Career History / Past Experience</label><input type="text" id="stafHistoriku" class="form-input" placeholder="Previous clubs, roles, achievements or academic experience..."></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success);" onclick="ruajStafin()">✓ Save Staff Member</button>
-
-                <div class="section-title" style="margin-top:25px;"><span>📋 OFFICIAL TECHNICAL STAFF REGISTRY</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Code</th><th>Full Name</th><th>Role</th><th>Contract</th><th>Period</th><th>License</th><th>📜 History / Career</th><th>Action</th></tr></thead>
-                        <tbody id="table-stafi"></tbody>
-                    </table>
-                </div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-stafi);">💬 Online Chat / SMS - Technical Staff</h4>
-                    <div class="chat-box" id="chatBox_stafi"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_stafi" class="form-input" style="flex-grow:1;" placeholder="Write a message for Technical Staff...">
-                        <button class="btn-action" style="background-color:var(--dep-stafi);" onclick="dergoMesazhChat('stafi')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. TAB: LEGAL -->
-            <div id="juridiku" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Legal Contracts</h4>
-                    <div>
-                        <input type="file" id="scanFile_juridiku" style="display:none;" onchange="ruajMaterialinSkanuar('juridiku', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_juridiku').click()">📄 Scan Official Contract</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Legal Registry</button>
-                    </div>
-                </div>
-                <div id="scannedList_juridiku" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>⚖️ Registration of Legal Contract</span></div>
-                <div class="grid-form">
-                    <div class="form-group"><label>Contract Code</label><input type="text" id="jurKodi" class="form-input" placeholder="e.g. KNT-2026-01"></div>
-                    <div class="form-group"><label>Subject / Player / Staff</label><input type="text" id="jurEmri" class="form-input" placeholder="Name of subject"></div>
-                    <div class="form-group"><label>Contract Value (€)</label><input type="number" id="jurVlera" class="form-input" placeholder="Total value (€)"></div>
-                    <div class="form-group"><label>Expiration Date</label><input type="date" id="jurSkadenca" class="form-input"></div>
-                    <div class="form-group"><label>Special Clauses</label><input type="text" id="jurKlausola" class="form-input" placeholder="Release clause, bonus..."></div>
-                    <div class="form-group"><label>Document (PDF/Photo)</label><input type="file" id="jurDokument" class="form-input"></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success);" onclick="ruajJuridikun()">✓ Save Contract</button>
-
-                <div class="section-title" style="margin-top:25px;"><span>⚖️ REGISTRY OF LEGAL CONTRACTS</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Code</th><th>Subject</th><th>Value (€)</th><th>Expiration</th><th>Clauses</th><th>Document</th><th>Action</th></tr></thead>
-                        <tbody id="table-juridiku"></tbody>
-                    </table>
-                </div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-juridiku);">💬 Online Chat / SMS - Legal Department</h4>
-                    <div class="chat-box" id="chatBox_juridiku"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_juridiku" class="form-input" style="flex-grow:1;" placeholder="Write a message for the Legal Department...">
-                        <button class="btn-action" style="background-color:var(--dep-juridiku);" onclick="dergoMesazhChat('juridiku')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. TAB: MEDICAL -->
-            <div id="mjekesor" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Medical Reports</h4>
-                    <div>
-                        <input type="file" id="scanFile_mjekesor" style="display:none;" onchange="ruajMaterialinSkanuar('mjekesor', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_mjekesor').click()">📄 Scan X-Ray/Echo/ECG</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Medical Records</button>
-                    </div>
-                </div>
-                <div id="scannedList_mjekesor" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>🏥 Registration of Medical Record / Injury (Automatically links to First Team)</span></div>
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>Select Player or Enter Name</label>
-                        <select id="mjLojtariSelect" class="form-input" onchange="sinkronizoLojtarinMjekesor()">
-                            <option value="">-- Select from First Team Players --</option>
-                        </select>
-                        <input type="text" id="mjEmri" class="form-input" placeholder="Or enter name manually" style="margin-top:5px;">
-                    </div>
-                    <div class="form-group"><label>Diagnosis / Injury</label><input type="text" id="mjDiagnostikimi" class="form-input" placeholder="Muscle injury, ligament..."></div>
-                    <div class="form-group">
-                        <label>Risk Level (RPE)</label>
-                        <select id="mjRreziku" class="form-input">
-                            <option value="I Ulët">🟢 Low (Full Training)</option>
-                            <option value="I Mesëm">🟡 Medium (Load adjustment)</option>
-                            <option value="I Lartë">🔴 High (Rest / Therapy)</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>Recovery / Return Time</label><input type="text" id="mjKoha" class="form-input" placeholder="e.g. 2 Weeks"></div>
-                    <div class="form-group"><label>Training Recommendation</label><input type="text" id="mjRekomandimi" class="form-input" placeholder="Gym work, physiotherapy..."></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success);" onclick="ruajMjekesorin()">✓ Save Medical Report & Send to First Team</button>
-
-                <div class="section-title" style="margin-top:25px;"><span>🏥 TEAM MEDICAL REGISTRY</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Player</th><th>Diagnosis</th><th>Risk</th><th>Return Time</th><th>Recommendation</th><th>Action</th></tr></thead>
-                        <tbody id="table-mjekesor"></tbody>
-                    </table>
-                </div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-mjekesor);">💬 Online Chat / SMS - Medical Department</h4>
-                    <div class="chat-box" id="chatBox_mjekesor"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_mjekesor" class="form-input" style="flex-grow:1;" placeholder="Write a message for Doctor/Physiotherapist...">
-                        <button class="btn-action" style="background-color:var(--dep-mjekesor);" onclick="dergoMesazhChat('mjekesor')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. TAB: TACTICAL ANALYSIS -->
-            <div id="analiza" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Tactical Analysis Sheets</h4>
-                    <div>
-                        <input type="file" id="scanFile_analiza" style="display:none;" onchange="ruajMaterialinSkanuar('analiza', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_analiza').click()">📄 Scan Tactical Diagram</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Tactical Report</button>
-                    </div>
-                </div>
-                <div id="scannedList_analiza" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>🎯 1. Registration of Collective Tactical Match Analysis</span></div>
-                <div class="grid-form">
-                    <div class="form-group"><label>Match / Opponent</label><input type="text" id="anNdeshja" class="form-input" placeholder="e.g. Against FK Vllaznia"></div>
-                    <div class="form-group"><label>Formation / Tactical Module</label><input type="text" id="anModuli" class="form-input" placeholder="4-3-3 / 4-2-3-1"></div>
-                    <div class="form-group"><label>Strengths</label><input type="text" id="anPikatForta" class="form-input" placeholder="Fast transition, corner kicks"></div>
-                    <div class="form-group"><label>Weaknesses</label><input type="text" id="anPikatDobeta" class="form-input" placeholder="Space behind full-backs"></div>
-                    <div class="form-group"><label>Key Instructions</label><input type="text" id="anUdhëzimet" class="form-input" placeholder="High press in opening minutes"></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success);" onclick="ruajAnalizen()">✓ Save Tactical Match Analysis</button>
-
-                <div class="section-title" style="margin-top:30px;"><span>📊 2. Individual Player Analysis in Match (Links to First Team)</span></div>
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>Select Player</label>
-                        <select id="anLojtariSelect" class="form-input" onchange="sinkronizoLojtarinAnaliz()">
-                            <option value="">-- Select from First Team --</option>
-                        </select>
-                        <input type="text" id="anLojtariEmri" class="form-input" placeholder="Player name" style="margin-top:5px;">
-                    </div>
-                    <div class="form-group"><label>Specific Match</label><input type="text" id="anLojtariNdeshja" class="form-input" placeholder="e.g. Vllaznia vs KF Shpresa"></div>
-                    <div class="form-group"><label>Minutes Played</label><input type="number" id="anMinuta" class="form-input" placeholder="e.g. 90, 65, 25"></div>
-                    <div class="form-group">
-                        <label>Appearance Type</label>
-                        <select id="anAktivizimi" class="form-input">
-                            <option value="Titullar">Starter (Lineup)</option>
-                            <option value="Zëvendësues (Hyrje)">Substitute (Subbed in)</option>
-                            <option value="Zëvendësuar (Dalje)">Substituted (Subbed out)</option>
-                            <option value="Në Stolip">On Bench (Unused)</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>Substitution Minute (If applicable)</label><input type="text" id="anZevendesimiMinuta" class="form-input" placeholder="e.g. At 65' min"></div>
-                    <div class="form-group"><label>Technical Elements (Passes, Dribbles, Goals)</label><input type="text" id="anTeknika" class="form-input" placeholder="85% passes, 1 assist, 3/4 dribbles"></div>
-                    <div class="form-group"><label>Tactical Elements (Positioning, Duels, Pressing)</label><input type="text" id="anTaktika" class="form-input" placeholder="Effective press, 6 duels won"></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--accent);" onclick="ruajAnalizenIndividuale()">✓ Save Player Stats & Send to First Team</button>
-
-                <div class="section-title" style="margin-top:25px;"><span>🎯 REGISTRY OF COLLECTIVE TACTICAL ANALYSES</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Match</th><th>Module</th><th>Strengths</th><th>Weaknesses</th><th>Instructions</th><th>Action</th></tr></thead>
-                        <tbody id="table-analiza"></tbody>
-                    </table>
-                </div>
-
-                <div class="section-title" style="margin-top:25px;"><span>📊 INDIVIDUAL PLAYER PERFORMANCE IN MATCHES</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Player</th><th>Match</th><th>Minutes</th><th>Appearance</th><th>Substitution</th><th>Technical Performance</th><th>Tactical Performance</th><th>Action</th></tr></thead>
-                        <tbody id="table-analiza-individuale"></tbody>
-                    </table>
-                </div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-analiza);">💬 Online Chat / SMS - Analysis Department</h4>
-                    <div class="chat-box" id="chatBox_analiza"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_analiza" class="form-input" style="flex-grow:1;" placeholder="Write a message for Video Analysts...">
-                        <button class="btn-action" style="background-color:var(--dep-analiza);" onclick="dergoMesazhChat('analiza')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. TAB: PHYSICAL PREPARATION -->
-            <div id="atletik" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Physical Tests / GPS</h4>
-                    <div>
-                        <input type="file" id="scanFile_atletik" style="display:none;" onchange="ruajMaterialinSkanuar('atletik', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_atletik').click()">📄 Scan GPS Report</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Athletic Records</button>
-                    </div>
-                </div>
-                <div id="scannedList_atletik" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>🏃 Registration of Physical Testing (Automatically links to First Team)</span></div>
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>Select Player or Enter Name</label>
-                        <select id="atlLojtariSelect" class="form-input" onchange="sinkronizoLojtarinAtletik()">
-                            <option value="">-- Select from First Team Players --</option>
-                        </select>
-                        <input type="text" id="atlEmri" class="form-input" placeholder="Or enter name manually" style="margin-top:5px;">
-                    </div>
-                    <div class="form-group"><label>Yo-Yo Test (Level)</label><input type="text" id="atlYoYo" class="form-input" placeholder="e.g. 18.4"></div>
-                    <div class="form-group"><label>Max Speed (km/h)</label><input type="text" id="atlVmax" class="form-input" placeholder="e.g. 33.2 km/h"></div>
-                    <div class="form-group"><label>Body Fat (%)</label><input type="text" id="atlFat" class="form-input" placeholder="e.g. 10.5%"></div>
-                    <div class="form-group"><label>GPS Load Status</label><input type="text" id="atlGPS" class="form-input" placeholder="Optimal / Overload"></div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success);" onclick="ruajAtletikun()">✓ Save Physical Test & Send to First Team</button>
-
-                <div class="section-title" style="margin-top:25px;"><span>🏃 PHYSICAL TESTING REGISTRY</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Player</th><th>Yo-Yo Test</th><th>VMax (km/h)</th><th>Fat %</th><th>GPS Status</th><th>Action</th></tr></thead>
-                        <tbody id="table-atletik"></tbody>
-                    </table>
-                </div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-atletik);">💬 Online Chat / SMS - Physical Preparation</h4>
-                    <div class="chat-box" id="chatBox_atletik"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_atletik" class="form-input" style="flex-grow:1;" placeholder="Write a message for Fitness Coach...">
-                        <button class="btn-action" style="background-color:var(--dep-atletik);" onclick="dergoMesazhChat('atletik')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. TAB: FIRST TEAM -->
-            <div id="ekipi1" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing First Team Dossier</h4>
-                    <div>
-                        <input type="file" id="scanFile_ekipi1" style="display:none;" onchange="ruajMaterialinSkanuar('ekipi1', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_ekipi1').click()">📄 Scan Player Document</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print First Team</button>
-                    </div>
-                </div>
-                <div id="scannedList_ekipi1" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span id="e1FormTitle">📝 Player Registration - First Team</span></div>
-                <input type="hidden" id="e1EditId" value="">
-                
-                <div class="grid-form">
-                    <div class="sub-group-title">👤 Identification & Basic Data</div>
-                    <div class="form-group"><label>Unique Code / No.</label><input type="text" id="e1Kodi" class="form-input" placeholder="e.g. No. 10 / E1-10"></div>
-                    <div class="form-group"><label>Full Name</label><input type="text" id="e1Emri" class="form-input" placeholder="Full name"></div>
-                    <div class="form-group">
-                        <label>Position / Role</label>
-                        <select id="e1Roli" class="form-input">
-                            <option value="Portier">Goalkeeper (GK)</option>
-                            <option value="Mbrojtës Qendror">Center Back (CB)</option>
-                            <option value="Mbrojtës Anësor">Full Back (LB/RB)</option>
-                            <option value="Mesfushor Mbrojtës">Defensive Midfielder (DMF)</option>
-                            <option value="Mesfushor Qendror">Central Midfielder (CMF/AMF)</option>
-                            <option value="Sulmues Anësor">Winger (LW/RW)</option>
-                            <option value="Sulmues Qendror">Center Forward (CF)</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>Date of Birth</label><input type="date" id="e1Datelindja" class="form-input"></div>
-                    <div class="form-group"><label>Player Photo</label><input type="file" id="e1Foto" class="form-input" accept="image/*"></div>
-
-                    <div class="sub-group-title">1. 🏃 Physical Data (Athletic Indicators & GPS)</div>
-                    <div class="form-group"><label>Anthropometry</label><input type="text" id="e1Antropo" class="form-input" placeholder="Height, Weight, Body Fat %, Muscle Mass"></div>
-                    <div class="form-group"><label>Aerobic/Anaerobic Endurance</label><input type="text" id="e1Qendrueshmeria" class="form-input" placeholder="Yo-Yo (IR1/IR2), VMA, VO2Max"></div>
-                    <div class="form-group"><label>Speed & Acceleration</label><input type="text" id="e1Shpejtesia" class="form-input" placeholder="Sprint 10m, 20m, 30m (time sec)"></div>
-                    <div class="form-group"><label>Agility & Change of Direction</label><input type="text" id="e1Agjiteti" class="form-input" placeholder="Illinois, Agility 5-10-5, T-Test"></div>
-                    <div class="form-group"><label>Explosive Power (Jump)</label><input type="text" id="e1Fuqia" class="form-input" placeholder="CMJ, SJ (cm)"></div>
-                    <div class="form-group"><label>GPS Data</label><input type="text" id="e1GPS" class="form-input" placeholder="Total distance, Sprint >25km/h, Player Load"></div>
-
-                    <div class="sub-group-title">2. ⚽ Technical & Tactical Data</div>
-                    <div class="form-group"><label>Passing & Technique</label><input type="text" id="e1Pasimet" class="form-input" placeholder="% Accuracy, progressive passes, key passes"></div>
-                    <div class="form-group"><label>Control & Dribbling</label><input type="text" id="e1Driblimi" class="form-input" placeholder="First touch, % 1v1 dribbles"></div>
-                    <div class="form-group"><label>Shooting & Finishing</label><input type="text" id="e1Goditja" class="form-input" placeholder="Accuracy on target, left/right foot, heading"></div>
-                    <div class="form-group"><label>Defending & Duelling</label><input type="text" id="e1Mbrojtja" class="form-input" placeholder="% Duels won, tackles, interceptions"></div>
-                    <div class="form-group"><label>Tactical Positioning</label><input type="text" id="e1Vendosja" class="form-input" placeholder="Spatial awareness, transition, discipline"></div>
-
-                    <div class="sub-group-title">3. 🏥 Medical & Health Data</div>
-                    <div class="form-group"><label>Injury History</label><input type="text" id="e1HistorikuMj" class="form-input" placeholder="Past injuries, duration, surgeries"></div>
-                    <div class="form-group"><label>Biomechanics & Muscle Asymmetry</label><input type="text" id="e1Asimetria" class="form-input" placeholder="Isokinetic, Hamstring/Quadriceps Ratio"></div>
-                    <div class="form-group"><label>Mobility & Stability</label><input type="text" id="e1Levizshmeria" class="form-input" placeholder="FMS Screen, joint flexibility"></div>
-                    <div class="form-group"><label>Daily Recovery & Wellness</label><input type="text" id="e1Wellness" class="form-input" placeholder="HRV, sleep, Soreness, RPE / Stress"></div>
-                    <div class="form-group"><label>Basic Examinations</label><input type="text" id="e1Ekzaminimet" class="form-input" placeholder="Blood work (Hemoglobin, Vit D), ECG, Spirometry"></div>
-                </div>
-                
-                <div style="display:flex; gap:10px;">
-                    <button class="btn-action" style="background-color: var(--success);" onclick="ruajEkipinEPare()">✓ Save / Update Player</button>
-                    <button class="btn-action" style="background-color: #64748b; display:none;" id="btnAnuloE1" onclick="anuloEditE1()">Cancel Changes</button>
-                </div>
-
-                <div class="section-title" style="margin-top:30px;"><span>⚽ OFFICIAL FIRST TEAM REGISTRY</span></div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Photo</th>
-                                <th>No/Code</th>
-                                <th>Player</th>
-                                <th>Position</th>
-                                <th>Physical Data (Athletic & GPS)</th>
-                                <th>Technical & Tactical Data</th>
-                                <th>Medical Data</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-ekipi1"></tbody>
-                    </table>
-                </div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-ekipi1);">💬 Online Chat / SMS - First Team</h4>
-                    <div class="chat-box" id="chatBox_ekipi1"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_ekipi1" class="form-input" style="flex-grow:1;" placeholder="Write a message for First Team...">
-                        <button class="btn-action" style="background-color:var(--dep-ekipi1);" onclick="dergoMesazhChat('ekipi1')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. TAB: ACADEMY -->
-            <div id="akademia" class="tab-content">
-                <div class="scan-print-bar">
-                    <h4>🖨️ Scanning & Printing Academy Documents</h4>
-                    <div>
-                        <input type="file" id="scanFile_akademia" style="display:none;" onchange="ruajMaterialinSkanuar('akademia', this)">
-                        <button class="btn-action" style="background:#475569;" onclick="document.getElementById('scanFile_akademia').click()">📄 Scan Certificate / Birth Certificate</button>
-                        <button class="btn-action" style="background:#10b981;" onclick="window.print()">🖨️ Print Academy Registries</button>
-                    </div>
-                </div>
-                <div id="scannedList_akademia" style="font-size:8pt; margin-bottom:15px; color:#475569;"></div>
-
-                <div class="section-title"><span>🏫 Academy Registries by Age Group (U7 - U19)</span></div>
-                <div id="zona-ekipeve-akademise"></div>
-
-                <div class="chat-container">
-                    <h4 style="font-size:9pt; text-transform:uppercase; margin-bottom:8px; color:var(--dep-akademia);">💬 Online Chat / SMS - Academy</h4>
-                    <div class="chat-box" id="chatBox_akademia"></div>
-                    <div class="chat-input-group">
-                        <input type="text" id="chatInput_akademia" class="form-input" style="flex-grow:1;" placeholder="Write a message for Academy Coaches...">
-                        <button class="btn-action" style="background-color:var(--dep-akademia);" onclick="dergoMesazhChat('akademia')">💬 Send SMS</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. TAB: SUPERADMIN -->
-            <div id="superadmin" class="tab-content">
-                <div class="section-title"><span>🔑 Administration & Payment Plan Panel</span></div>
-                <div class="grid-form">
-                    <div class="sub-group-title">💳 Subscription Plan / Payment Configuration</div>
-                    <div class="form-group">
-                        <label>Select Client Plan</label>
-                        <select id="cfgPlaniLloji" class="form-input">
-                            <option value="Plan Mujor (€49.99/m)">Monthly Plan (€49.99 / Month)</option>
-                            <option value="Plan me Këste (€150 x 3)">Installment Plan (€150 / Every 3 Months)</option>
-                            <option value="Plan Vjetor (€450/vjet)">Annual Plan (€450 / Year)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Next Expiration Date</label>
-                        <input type="date" id="cfgDataSkadences" class="form-input">
-                    </div>
-                    <div class="form-group">
-                        <label>License Status</label>
-                        <select id="cfgStatusiLicences" class="form-input">
-                            <option value="Aktiv">Active</option>
-                            <option value="I Bllokuar">Blocked / Non-payment</option>
-                        </select>
-                    </div>
-                </div>
-                <button class="btn-action" style="background-color: var(--success);" onclick="ruajKonfiguriminEPlani()">✓ Save New Plan</button>
-            </div>
-
         </div>
     </div>
 
+    <!-- SISTEMI I PLOTË I PËRKTHIMIT (AUTOMATIK DHE I SIGURT) -->
     <script>
-        let ROLI_AKTIV = "";
-        let db = null;
-
-        const PASSWORDS = {
-            superadmin: "admin123",
-            komanda: "pres123",
-            stafi: "stafi123",
-            juridiku: "juridik123",
-            mjekesor: "mjek123",
-            analiza: "analiza123",
-            atletik: "atletik123",
-            ekipi1: "ekipi123",
-            akademia: "akademia123"
+        const translations = {
+            sq: {
+                client: "Klienti",
+                plan: "Plani",
+                status_active: "Aktiv",
+                btn_manage: "💳 Menaxho Planin / Paguaj",
+                menu_komanda: "📡 Qendra e Vendimmarrjes",
+                menu_stafi: "📋 1. Stafi Teknik",
+                menu_juridiku: "⚖️ 2. Dep. Juridik",
+                menu_mjekesor: "🏥 3. Dep. Mjekësor",
+                btn_logout: "🔒 Dil nga platforma",
+                welcome: "Mirësevini",
+                btn_backup: "💾 Cloud BackUp (.json)",
+                dec_center_title: "📡 Qendra Operative e Vendimmarrjes Taktike & Menaxheriale",
+                dec_center_sub: "Sistem monitorimi ditor për stërvitjet, ngarkesën dhe zgjedhjet e lojtarëve.",
+                scan_print_title: "🖨️ Skanimi & Printimi i Raporteve",
+                btn_scan: "📄 Skano Dokument",
+                btn_print: "🖨️ Printo Raportin"
+            },
+            en: {
+                client: "Client",
+                plan: "Plan",
+                status_active: "Active",
+                btn_manage: "💳 Manage Plan / Pay",
+                menu_komanda: "📡 Decision Center",
+                menu_stafi: "📋 1. Technical Staff",
+                menu_juridiku: "⚖️ 2. Legal Dept.",
+                menu_mjekesor: "🏥 3. Medical Dept.",
+                btn_logout: "🔒 Log out",
+                welcome: "Welcome",
+                btn_backup: "💾 Cloud BackUp (.json)",
+                dec_center_title: "📡 Tactical & Managerial Decision Operational Center",
+                dec_center_sub: "Daily monitoring system for training, load, and player choices.",
+                scan_print_title: "🖨️ Scanning & Printing Reports",
+                btn_scan: "📄 Scan Document",
+                btn_print: "🖨️ Print Executive Report"
+            }
         };
 
-        const DEPT_COLORS = {
-            komanda: "#1e3a8a",
-            stafi: "#0284c7",
-            juridiku: "#7c3aed",
-            mjekesor: "#dc2626",
-            analiza: "#059669",
-            atletik: "#d97706",
-            ekipi1: "#2563eb",
-            akademia: "#0d9488",
-            superadmin: "#4c1d95"
-        };
+        let currentLang = localStorage.getItem('app_lang') || 'sq';
 
-        let PLAN_CONFIG = {
-            lloji: "Plan Mujor (€49.99/m)",
-            skadenca: "2026-09-05",
-            statusi: "Aktiv"
-        };
-        
-        // REQUIREMENT 3: Complete data storage in IndexedDB (works across laptops & other PCs)
-        const stores = ["stafi_store", "juridiku_store", "mjekesor_store", "analiza_store", "analiza_ind_store", "atletik_store", "ekipi1_store", "akademia_store", "kerkesat_store", "scanned_docs_store", "chat_messages_store"];
-        const dbRequest = indexedDB.open("ManiFootballGlobalDB_2026_v2", 1);
-
-        dbRequest.onupgradeneeded = function(e) {
-            let database = e.target.result;
-            stores.forEach(s => { 
-                if (!database.objectStoreNames.contains(s)) database.createObjectStore(s, { keyPath: "id", autoIncrement: true }); 
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
             });
-        };
-        
-        dbRequest.onsuccess = function(e) { 
-            db = e.target.result; 
-            ngarkoPlaninEStored();
-            verifikoAbonimin();
-            krijoRaportetFillestareNeseBosh();
-            renderAllTables(); 
-            krijoSeksionetEAkademise();
-            ngarkoLojtaretDropdowns();
-            ngarkoMesazhetChatGjithkund();
-            ngarkoDokumentetESkanuara();
-        };
-
-        function krijoRaportetFillestareNeseBosh() {
-            const tx = db.transaction(["kerkesat_store"], "readwrite");
-            const store = tx.objectStore("kerkesat_store");
-            store.getAll().onsuccess = function(e) {
-                if (e.target.result.length === 0) {
-                    store.add({ data: "05/08/2026", titulli: "Post-match GPS load report", dep: "Përgatitja Fizike", status: "Përfunduar", permbajtja: "Players showed an optimal level of athletic load during the second half of the match." });
-                    store.add({ data: "05/08/2026", titulli: "Tactical analysis of next opponent", dep: "Analiza & Të Dhënat", status: "Në Proces", permbajtja: "Opponent plays with a mid 4-4-2 block and attacks wide." });
-                }
-            };
+            document.getElementById('langBtn').innerText = currentLang === 'sq' ? '🇬🇧 English' : '🇦🇱 Shqip';
         }
 
-        function ngarkoPlaninEStored() {
-            const iRuajtur = localStorage.getItem("MANI_SUBSCRIPTION_DATA");
-            if (iRuajtur) {
-                PLAN_CONFIG = JSON.parse(iRuajtur);
-            } else {
-                let sot = new Date();
-                sot.setDate(sot.getDate() + 30);
-                PLAN_CONFIG.skadenca = sot.toISOString().split('T')[0];
-                ruajPlaninInStorage();
-            }
+        function toggleLanguage() {
+            currentLang = currentLang === 'sq' ? 'en' : 'sq';
+            localStorage.setItem('app_lang', currentLang);
+            applyTranslations();
         }
 
-        function ruajPlaninInStorage() {
-            localStorage.setItem("MANI_SUBSCRIPTION_DATA", JSON.stringify(PLAN_CONFIG));
-        }
-
-        function verifikoAbonimin() {
-            const sot = new Date();
-            const skadenca = new Date(PLAN_CONFIG.skadenca);
-            const lblExp = document.getElementById('lblLicenceExp');
-            const lblStatus = document.getElementById('lblLicenceStatus');
-            const lblPlani = document.getElementById('lblPlaniEmri');
-
-            lblPlani.innerText = PLAN_CONFIG.lloji;
-            const difDite = Math.ceil((skadenca - sot) / (1000 * 60 * 60 * 24));
-
-            if (difDite <= 0 || PLAN_CONFIG.statusi === "I Bllokuar") {
-                lblStatus.innerText = "Expired / Blocked";
-                lblStatus.className = "badge bg-red";
-                lblExp.innerText = "0 Days (Payment Required)";
-                document.getElementById('pjesa-autentikimit').style.display = 'none';
-                document.getElementById('pjesa-skaduar').style.display = 'block';
-                document.getElementById('login-overlay').style.display = 'flex';
-            } else {
-                lblStatus.innerText = "Active";
-                lblStatus.className = "badge bg-green";
-                lblExp.innerText = difDite + " Days remaining";
-                document.getElementById('pjesa-autentikimit').style.display = 'block';
-                document.getElementById('pjesa-skaduar').style.display = 'none';
-            }
-        }
-
-        function autentikoDepartamentin() {
-            const selectedRole = document.getElementById('loginRole').value;
-            const enteredPass = document.getElementById('loginPass').value;
-
-            if (PASSWORDS[selectedRole] && enteredPass !== PASSWORDS[selectedRole]) {
-                alert("❌ Incorrect password for this department!");
-                return;
-            }
-
-            ROLI_AKTIV = selectedRole;
-            document.getElementById('login-overlay').style.display = 'none';
-            document.querySelectorAll('.nav-links li').forEach(li => li.classList.add('unlocked'));
-            
-            if(selectedRole === 'superadmin') {
-                document.getElementById('menu-superadmin').style.display = 'flex';
-                document.getElementById('cfgDataSkadences').value = PLAN_CONFIG.skadenca;
-            }
-            
-            document.getElementById('roliAktivBadge').innerText = "Sector: " + selectedRole.toUpperCase();
-            switchTab(selectedRole === 'superadmin' ? 'superadmin' : selectedRole);
-        }
-
-        /* REQUIREMENT 1: Department Management and Color Change */
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            
-            if(document.getElementById(tabId)) document.getElementById(tabId).classList.add('active');
-            if(document.getElementById('menu-' + tabId)) document.getElementById('menu-' + tabId).classList.add('active');
-            
-            const color = DEPT_COLORS[tabId] || DEPT_COLORS.komanda;
-            document.documentElement.style.setProperty('--active-dept-color', color);
-            
-            document.getElementById('titulliSektorit').innerText = "SECTOR: " + tabId.toUpperCase();
-            document.getElementById('mainHeader').style.borderBottomColor = color;
-        }
-
-        /* REQUIREMENT 2 & 3: Scanning Materials and Saving to Platform */
-        async function ruajMaterialinSkanuar(dept, inputEl) {
-            const file = inputEl.files[0];
-            if(!file || !db) return;
-
-            const base64 = await getBase64(file);
-            const dataObj = {
-                dept: dept,
-                emri: file.name,
-                data: new Date().toLocaleString('en-US'),
-                base64: base64
-            };
-
-            const tx = db.transaction(["scanned_docs_store"], "readwrite");
-            tx.objectStore("scanned_docs_store").add(dataObj);
-            tx.oncomplete = function() {
-                alert("✓ Material scanned and saved to platform!");
-                ngarkoDokumentetESkanuara();
-            };
-        }
-
-        function ngarkoDokumentetESkanuara() {
-            if(!db) return;
-            const tx = db.transaction(["scanned_docs_store"], "readonly");
-            tx.objectStore("scanned_docs_store").getAll().onsuccess = function(e) {
-                const me = e.target.result;
-                Object.keys(DEPT_COLORS).forEach(dept => {
-                    const targetEl = document.getElementById(`scannedList_${dept}`);
-                    if(targetEl) {
-                        const items = me.filter(d => d.dept === dept);
-                        if(items.length === 0) {
-                            targetEl.innerHTML = "<em>No scanned documents for this department.</em>";
-                        } else {
-                            targetEl.innerHTML = "<strong>📁 Scanned/Printed Documents:</strong> " + 
-                                items.map(i => `<a href="${i.base64}" target="_blank" class="file-link" style="margin-right:10px;">📄 ${i.emri} (${i.data})</a>`).join(" | ");
-                        }
-                    }
-                });
-            };
-        }
-
-        /* REQUIREMENT 5: Online SMS / Text Chat Communication Module */
-        function dergoMesazhChat(dept) {
-            const inputEl = document.getElementById(`chatInput_${dept}`);
-            const text = inputEl.value;
-            if(!text || !db) return;
-
-            const msgObj = {
-                dept: dept,
-                autor: ROLI_AKTIV ? ROLI_AKTIV.toUpperCase() : "STAFF",
-                koha: new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'}),
-                tekst: text
-            };
-
-            const tx = db.transaction(["chat_messages_store"], "readwrite");
-            tx.objectStore("chat_messages_store").add(msgObj);
-            tx.oncomplete = function() {
-                inputEl.value = "";
-                ngarkoMesazhetChatGjithkund();
-            };
-        }
-
-        function ngarkoMesazhetChatGjithkund() {
-            if(!db) return;
-            const tx = db.transaction(["chat_messages_store"], "readonly");
-            tx.objectStore("chat_messages_store").getAll().onsuccess = function(e) {
-                const msgs = e.target.result;
-                Object.keys(DEPT_COLORS).forEach(dept => {
-                    const box = document.getElementById(`chatBox_${dept}`);
-                    if(box) {
-                        const items = msgs.filter(m => m.dept === dept);
-                        box.innerHTML = items.map(m => `
-                            <div class="chat-msg">
-                                <span class="author">${m.autor} • ${m.koha}</span>
-                                ${m.tekst}
-                            </div>
-                        `).join('');
-                        box.scrollTop = box.scrollHeight;
-                    }
-                });
-            };
-        }
-
-        function getBase64(file) {
-            return new Promise((resolve) => {
-                if (!file) resolve("");
-                const reader = new FileReader(); reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-            });
-        }
-
-        function dergoRaportTePresidenti() {
-            if (!db) return;
-            const titulli = document.getElementById('repTitulli').value;
-            const dep = document.getElementById('repDepartamenti').value;
-            const permbajtja = document.getElementById('repPermbajtja').value;
-            
-            if(!titulli || !permbajtja) return alert("Please fill in the title and content of the report!");
-            
-            const sot = new Date();
-            const dataStr = String(sot.getDate()).padStart(2,'0') + '/' + String(sot.getMonth()+1).padStart(2,'0') + '/' + sot.getFullYear();
-
-            const obj = { data: dataStr, titulli, dep, status: "Sent", permbajtja };
-            const tx = db.transaction(["kerkesat_store"], "readwrite");
-            tx.objectStore("kerkesat_store").add(obj);
-            tx.oncomplete = function() {
-                alert("✓ Report successfully sent to the President's Decision Center!");
-                document.getElementById('repTitulli').value = '';
-                document.getElementById('repPermbajtja').value = '';
-                renderAllTables();
-            };
-        }
-
-        function shikoRaportinModal(id) {
-            const tx = db.transaction(["kerkesat_store"], "readonly");
-            tx.objectStore("kerkesat_store").get(id).onsuccess = function(e) {
-                const r = e.target.result;
-                if(r) {
-                    document.getElementById('mTitle').innerText = "📋 " + r.titulli + " (" + r.dep + ")";
-                    document.getElementById('mContent').innerHTML = `
-                        <strong>Date:</strong> ${r.data}<br>
-                        <strong>Department:</strong> ${r.dep}<br>
-                        <strong>Status:</strong> ${r.status}<br><hr style="margin:10px 0;">
-                        <strong>Report Content:</strong><br>
-                        <p style="white-space: pre-wrap; margin-top:5px; background:#f1f5f9; padding:10px; border-radius:4px;">${r.permbajtja || 'No detailed content.'}</p>
-                    `;
-                    document.getElementById('modalRaporti').style.display = 'flex';
-                }
-            };
-        }
-
-        function mbyllModalRaporti() {
-            document.getElementById('modalRaporti').style.display = 'none';
-        }
-
-        function printoLojtarinE1(id) {
-            const tx = db.transaction(["ekipi1_store"], "readonly");
-            tx.objectStore("ekipi1_store").get(id).onsuccess = function(e) {
-                const l = e.target.result;
-                if(!l) return;
-                
-                const w = window.open('', '_blank');
-                w.document.write(`
-                    <html>
-                    <head>
-                        <title>Player File - ${l.emri}</title>
-                        <style>
-                            body { font-family: Arial, sans-serif; padding: 25px; color: #1e293b; }
-                            .header { text-align: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 10px; margin-bottom: 20px; }
-                            .header h1 { margin: 0; color: #1e3a8a; font-size: 18pt; }
-                            .header p { margin: 5px 0 0 0; color: #64748b; font-size: 10pt; }
-                            .profile-grid { display: flex; gap: 20px; margin-bottom: 20px; }
-                            .photo-box { width: 140px; height: 140px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; }
-                            .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-                            .info-box { flex-grow: 1; }
-                            .info-box table { width: 100%; border-collapse: collapse; }
-                            .info-box td { padding: 6px; border-bottom: 1px solid #e2e8f0; font-size: 9pt; }
-                            .section-title { font-size: 11pt; font-weight: bold; color: #1e3a8a; border-left: 4px solid #1e3a8a; padding-left: 8px; margin: 15px 0 10px 0; text-transform: uppercase; background: #e0e7ff; padding: 5px; }
-                            .box-detail { background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-size: 9pt; margin-bottom: 15px; }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="header">
-                            <h1>MANI FOOTBALL DECISION INTELLIGENCE PLATFORM</h1>
-                            <p>PLAYER PERFORMANCE CARD AND TECHNICAL SHEET</p>
-                        </div>
-
-                        <div class="profile-grid">
-                            <div class="photo-box">
-                                ${l.fotoBase64 ? `<img src="${l.fotoBase64}">` : `<div style="text-align:center; padding-top:50px; font-size:9pt; color:#94a3b8;">No Photo</div>`}
-                            </div>
-                            <div class="info-box">
-                                <table>
-                                    <tr><td><strong>Full Name:</strong> ${l.emri}</td><td><strong>No / Unique Code:</strong> ${l.kod || '-'}</td></tr>
-                                    <tr><td><strong>Position:</strong> ${l.roli || '-'}</td><td><strong>Date of Birth:</strong> ${l.datelindja || '-'}</td></tr>
-                                    <tr><td colspan="2"><strong>Print Date:</strong> ${new Date().toLocaleDateString('en-US')}</td></tr>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="section-title">1. 🏃 Physical & Athletic Indicators (GPS)</div>
-                        <div class="box-detail">
-                            <strong>Anthropometry:</strong> ${l.antropo || 'N/A'}<br>
-                            <strong>Aerobic/Anaerobic Endurance:</strong> ${l.qendrueshmeria || 'N/A'}<br>
-                            <strong>Speed & Acceleration:</strong> ${l.shpejtesia || 'N/A'}<br>
-                            <strong>Agility & Change of Direction:</strong> ${l.agjiteti || 'N/A'}<br>
-                            <strong>Explosive Power:</strong> ${l.fuqia || 'N/A'}<br>
-                            <strong>GPS Metrics:</strong> ${l.gps || 'N/A'}
-                        </div>
-
-                        <div class="section-title">2. ⚽ Technical & Tactical Data</div>
-                        <div class="box-detail">
-                            <strong>Passing:</strong> ${l.pasimet || 'N/A'}<br>
-                            <strong>Dribbling:</strong> ${l.driblimi || 'N/A'}<br>
-                            <strong>Shooting:</strong> ${l.goditja || 'N/A'}<br>
-                            <strong>Defending:</strong> ${l.mbrojtja || 'N/A'}<br>
-                            <strong>Positioning:</strong> ${l.vendosja || 'N/A'}
-                        </div>
-
-                        <div class="section-title">3. 🏥 Medical & Health Data</div>
-                        <div class="box-detail">
-                            <strong>Injury History:</strong> ${l.historikuMj || 'N/A'}<br>
-                            <strong>Asymmetry:</strong> ${l.asimetria || 'N/A'}<br>
-                            <strong>Mobility & Stability:</strong> ${l.levizshmeria || 'N/A'}<br>
-                            <strong>Wellness:</strong> ${l.wellness || 'N/A'}<br>
-                            <strong>Examinations:</strong> ${l.ekzaminimet || 'N/A'}
-                        </div>
-
-                        <div style="margin-top:30px; display:flex; justify-content:space-between; font-size:9pt; text-align:center;">
-                            <div>_______________________<br>Technical Director Signature</div>
-                            <div>_______________________<br>Club Doctor Signature</div>
-                        </div>
-                    </body>
-                    </html>
-                `);
-                w.document.close();
-                setTimeout(() => { w.print(); }, 500);
-            };
-        }
-
-        function ngarkoLojtaretDropdowns() {
-            if(!db) return;
-            const selectEl = document.getElementById('mjLojtariSelect');
-            const selectAtl = document.getElementById('atlLojtariSelect');
-            const selectAn = document.getElementById('anLojtariSelect');
-
-            if(selectEl) selectEl.innerHTML = '<option value="">-- Select from First Team Players --</option>';
-            if(selectAtl) selectAtl.innerHTML = '<option value="">-- Select from First Team Players --</option>';
-            if(selectAn) selectAn.innerHTML = '<option value="">-- Select from First Team --</option>';
-
-            db.transaction(["ekipi1_store"], "readonly").objectStore("ekipi1_store").getAll().onsuccess = function(e) {
-                e.target.result.forEach(l => {
-                    if(selectEl) selectEl.innerHTML += `<option value="${l.emri}">${l.emri} (${l.roli || 'Player'})</option>`;
-                    if(selectAtl) selectAtl.innerHTML += `<option value="${l.emri}">${l.emri} (${l.roli || 'Player'})</option>`;
-                    if(selectAn) selectAn.innerHTML += `<option value="${l.emri}">${l.emri} (${l.roli || 'Player'})</option>`;
-                });
-            };
-        }
-
-        function sinkronizoLojtarinMjekesor() {
-            const val = document.getElementById('mjLojtariSelect').value;
-            if(val) document.getElementById('mjEmri').value = val;
-        }
-
-        function sinkronizoLojtarinAtletik() {
-            const val = document.getElementById('atlLojtariSelect').value;
-            if(val) document.getElementById('atlEmri').value = val;
-        }
-
-        function sinkronizoLojtarinAnaliz() {
-            const val = document.getElementById('anLojtariSelect').value;
-            if(val) document.getElementById('anLojtariEmri').value = val;
-        }
-
-        function ruajStafin() {
-            if (!db) return;
-            const obj = {
-                kod: document.getElementById('stafKodi').value,
-                emri: document.getElementById('stafEmri').value,
-                roli: document.getElementById('stafRoli').value,
-                kontrata: document.getElementById('stafKontrata').value,
-                data: document.getElementById('stafData').value,
-                licenca: document.getElementById('stafLicenca').value,
-                historiku: document.getElementById('stafHistoriku').value
-            };
-            if(!obj.emri) return alert("Enter the name!");
-            const tx = db.transaction(["stafi_store"], "readwrite");
-            tx.objectStore("stafi_store").add(obj);
-            tx.oncomplete = function() {
-                alert("✓ Staff member saved successfully!");
-                document.getElementById('stafEmri').value = '';
-                document.getElementById('stafKodi').value = '';
-                document.getElementById('stafHistoriku').value = '';
-                renderAllTables();
-            };
-        }
-
-        async function ruajJuridikun() {
-            if (!db) return;
-            const docFile = document.getElementById('jurDokument').files[0];
-            let docBase64 = docFile ? await getBase64(docFile) : "";
-            
-            const obj = {
-                kod: document.getElementById('jurKodi').value,
-                emri: document.getElementById('jurEmri').value,
-                vlera: document.getElementById('jurVlera').value,
-                skadenca: document.getElementById('jurSkadenca').value,
-                klausola: document.getElementById('jurKlausola').value,
-                docBase64: docBase64
-            };
-            if(!obj.emri) return alert("Enter the subject's name!");
-            const tx = db.transaction(["juridiku_store"], "readwrite");
-            tx.objectStore("juridiku_store").add(obj);
-            tx.oncomplete = function() {
-                alert("✓ Contract saved!");
-                document.getElementById('jurEmri').value = '';
-                document.getElementById('jurKodi').value = '';
-                renderAllTables();
-            };
-        }
-
-        function ruajMjekesorin() {
-            if (!db) return;
-            const emri = document.getElementById('mjEmri').value;
-            const diag = document.getElementById('mjDiagnostikimi').value;
-            const rreziku = document.getElementById('mjRreziku').value;
-            const koha = document.getElementById('mjKoha').value;
-            const rekomandimi = document.getElementById('mjRekomandimi').value;
-
-            if(!emri) return alert("Enter or select the player's name!");
-
-            const obj = { emri, diag, rreziku, koha, rekomandimi };
-            const tx = db.transaction(["mjekesor_store"], "readwrite");
-            tx.objectStore("mjekesor_store").add(obj);
-
-            const txE1 = db.transaction(["ekipi1_store"], "readwrite");
-            const storeE1 = txE1.objectStore("ekipi1_store");
-            
-            storeE1.getAll().onsuccess = function(e) {
-                const lojtaret = e.target.result;
-                const lojtariTarget = lojtaret.find(l => l.emri && l.emri.trim().toLowerCase() === emri.trim().toLowerCase());
-
-                if (lojtariTarget) {
-                    let shenimRik = `[MEDICAL]: ${diag} | Risk: ${rreziku} | Return: ${koha} | Rec: ${rekomandimi}`;
-                    lojtariTarget.historikuMj = lojtariTarget.historikuMj ? (lojtariTarget.historikuMj + " || " + shenimRik) : shenimRik;
-                    storeE1.put(lojtariTarget);
-                }
-            };
-
-            tx.oncomplete = function() {
-                alert("✓ Medical report saved and automatically linked to the player's First Team profile!");
-                document.getElementById('mjEmri').value = '';
-                document.getElementById('mjDiagnostikimi').value = '';
-                document.getElementById('mjKoha').value = '';
-                document.getElementById('mjRekomandimi').value = '';
-                document.getElementById('mjLojtariSelect').value = '';
-                renderAllTables();
-            };
-        }
-
-        function ruajAnalizen() {
-            if (!db) return;
-            const obj = {
-                ndeshja: document.getElementById('anNdeshja').value,
-                moduli: document.getElementById('anModuli').value,
-                pikatForta: document.getElementById('anPikatForta').value,
-                pikatDobeta: document.getElementById('anPikatDobeta').value,
-                udhezimet: document.getElementById('anUdhëzimet').value
-            };
-            if(!obj.ndeshja) return alert("Enter the match!");
-            const tx = db.transaction(["analiza_store"], "readwrite");
-            tx.objectStore("analiza_store").add(obj);
-            tx.oncomplete = function() {
-                alert("✓ Tactical match analysis saved!");
-                document.getElementById('anNdeshja').value = '';
-                renderAllTables();
-            };
-        }
-
-        function ruajAnalizenIndividuale() {
-            if (!db) return;
-            const emri = document.getElementById('anLojtariEmri').value;
-            const ndeshja = document.getElementById('anLojtariNdeshja').value;
-            const minuta = document.getElementById('anMinuta').value;
-            const aktivizimi = document.getElementById('anAktivizimi').value;
-            const zevendesimi = document.getElementById('anZevendesimiMinuta').value;
-            const teknika = document.getElementById('anTeknika').value;
-            const taktika = document.getElementById('anTaktika').value;
-
-            if(!emri) return alert("Select or enter the player's name!");
-            if(!ndeshja) return alert("Enter the match!");
-
-            const obj = { emri, ndeshja, minuta, aktivizimi, zevendesimi, teknika, taktika };
-            const tx = db.transaction(["analiza_ind_store"], "readwrite");
-            tx.objectStore("analiza_ind_store").add(obj);
-
-            const txE1 = db.transaction(["ekipi1_store"], "readwrite");
-            const storeE1 = txE1.objectStore("ekipi1_store");
-            
-            storeE1.getAll().onsuccess = function(e) {
-                const lojtaret = e.target.result;
-                const lojtariTarget = lojtaret.find(l => l.emri && l.emri.trim().toLowerCase() === emri.trim().toLowerCase());
-
-                if (lojtariTarget) {
-                    let minTek = `[${ndeshja}]: ${minuta}' min (${aktivizimi}${zevendesimi ? ' - ' + zevendesimi : ''}) | Tech: ${teknika}`;
-                    let minTak = `[${ndeshja}]: Tac: ${taktika}`;
-
-                    lojtariTarget.pasimet = lojtariTarget.pasimet ? (lojtariTarget.pasimet + " || " + minTek) : minTek;
-                    lojtariTarget.vendosja = lojtariTarget.vendosja ? (lojtariTarget.vendosja + " || " + minTak) : minTak;
-                    storeE1.put(lojtariTarget);
-                }
-            };
-
-            tx.oncomplete = function() {
-                alert("✓ Individual player analysis saved and synchronized with the First Team!");
-                document.getElementById('anLojtariEmri').value = '';
-                document.getElementById('anLojtariNdeshja').value = '';
-                document.getElementById('anMinuta').value = '';
-                document.getElementById('anZevendesimiMinuta').value = '';
-                document.getElementById('anTeknika').value = '';
-                document.getElementById('anTaktika').value = '';
-                document.getElementById('anLojtariSelect').value = '';
-                renderAllTables();
-            };
-        }
-
-        function ruajAtletikun() {
-            if (!db) return;
-            const emri = document.getElementById('atlEmri').value;
-            const yoyo = document.getElementById('atlYoYo').value;
-            const vmax = document.getElementById('atlVmax').value;
-            const fat = document.getElementById('atlFat').value;
-            const gps = document.getElementById('atlGPS').value;
-
-            if(!emri) return alert("Enter or select the player's name!");
-
-            const obj = { emri, yoyo, vmax, fat, gps };
-            const tx = db.transaction(["atletik_store"], "readwrite");
-            tx.objectStore("atletik_store").add(obj);
-
-            const txE1 = db.transaction(["ekipi1_store"], "readwrite");
-            const storeE1 = txE1.objectStore("ekipi1_store");
-            
-            storeE1.getAll().onsuccess = function(e) {
-                const lojtaret = e.target.result;
-                const lojtariTarget = lojtaret.find(l => l.emri && l.emri.trim().toLowerCase() === emri.trim().toLowerCase());
-
-                if (lojtariTarget) {
-                    if (yoyo) lojtariTarget.qendrueshmeria = (lojtariTarget.qendrueshmeria ? lojtariTarget.qendrueshmeria + " | Yo-Yo: " : "Yo-Yo: ") + yoyo;
-                    if (vmax) lojtariTarget.shpejtesia = (lojtariTarget.shpejtesia ? lojtariTarget.shpejtesia + " | VMax: " : "VMax: ") + vmax + " km/h";
-                    if (fat) lojtariTarget.antropo = (lojtariTarget.antropo ? lojtariTarget.antropo + " | Fat: " : "Fat: ") + fat + "%";
-                    if (gps) lojtariTarget.gps = (lojtariTarget.gps ? lojtariTarget.gps + " | GPS: " : "GPS: ") + gps;
-                    storeE1.put(lojtariTarget);
-                }
-            };
-
-            tx.oncomplete = function() {
-                alert("✓ Physical testing saved and automatically synchronized with the player's First Team profile!");
-                document.getElementById('atlEmri').value = '';
-                document.getElementById('atlYoYo').value = '';
-                document.getElementById('atlVmax').value = '';
-                document.getElementById('atlFat').value = '';
-                document.getElementById('atlGPS').value = '';
-                document.getElementById('atlLojtariSelect').value = '';
-                renderAllTables();
-            };
-        }
-
-        async function ruajEkipinEPare() {
-            if (!db) return;
-            const editId = document.getElementById('e1EditId').value;
-            const emri = document.getElementById('e1Emri').value;
-
-            if(!emri) return alert("Please enter the player's name!");
-
-            const fileEl = document.getElementById('e1Foto').files[0];
-
-            let dataObj = {
-                kod: document.getElementById('e1Kodi').value,
-                emri: emri,
-                roli: document.getElementById('e1Roli').value,
-                datelindja: document.getElementById('e1Datelindja').value,
-                
-                antropo: document.getElementById('e1Antropo').value,
-                qendrueshmeria: document.getElementById('e1Qendrueshmeria').value,
-                shpejtesia: document.getElementById('e1Shpejtesia').value,
-                agjiteti: document.getElementById('e1Agjiteti').value,
-                fuqia: document.getElementById('e1Fuqia').value,
-                gps: document.getElementById('e1GPS').value,
-
-                pasimet: document.getElementById('e1Pasimet').value,
-                driblimi: document.getElementById('e1Driblimi').value,
-                goditja: document.getElementById('e1Goditja').value,
-                mbrojtja: document.getElementById('e1Mbrojtja').value,
-                vendosja: document.getElementById('e1Vendosja').value,
-
-                historikuMj: document.getElementById('e1HistorikuMj').value,
-                asimetria: document.getElementById('e1Asimetria').value,
-                levizshmeria: document.getElementById('e1Levizshmeria').value,
-                wellness: document.getElementById('e1Wellness').value,
-                ekzaminimet: document.getElementById('e1Ekzaminimet').value
-            };
-
-            if (fileEl) {
-                dataObj.fotoBase64 = await getBase64(fileEl);
-            }
-
-            const tx = db.transaction(["ekipi1_store"], "readwrite");
-            const store = tx.objectStore("ekipi1_store");
-
-            if (editId) {
-                dataObj.id = parseInt(editId);
-                if (!dataObj.fotoBase64) {
-                    const existingRecord = await new Promise(r => store.get(dataObj.id).onsuccess = e => r(e.target.result));
-                    if (existingRecord && existingRecord.fotoBase64) dataObj.fotoBase64 = existingRecord.fotoBase64;
-                }
-                store.put(dataObj);
-            } else {
-                store.add(dataObj);
-            }
-
-            tx.oncomplete = function() {
-                alert(editId ? "✓ Player data updated successfully!" : "✓ Player registered successfully to First Team!");
-                anuloEditE1();
-                ngarkoLojtaretDropdowns();
-                renderAllTables();
-            };
-        }
-
-        function ndryshoLojtarE1(id) {
-            const tx = db.transaction(["ekipi1_store"], "readonly");
-            tx.objectStore("ekipi1_store").get(id).onsuccess = function(e) {
-                const l = e.target.result;
-                if(l) {
-                    document.getElementById('e1EditId').value = l.id;
-                    document.getElementById('e1Kodi').value = l.kod || '';
-                    document.getElementById('e1Emri').value = l.emri || '';
-                    document.getElementById('e1Roli').value = l.roli || 'Portier';
-                    document.getElementById('e1Datelindja').value = l.datelindja || '';
-
-                    document.getElementById('e1Antropo').value = l.antropo || '';
-                    document.getElementById('e1Qendrueshmeria').value = l.qendrueshmeria || '';
-                    document.getElementById('e1Shpejtesia').value = l.shpejtesia || '';
-                    document.getElementById('e1Agjiteti').value = l.agjiteti || '';
-                    document.getElementById('e1Fuqia').value = l.fuqia || '';
-                    document.getElementById('e1GPS').value = l.gps || '';
-
-                    document.getElementById('e1Pasimet').value = l.pasimet || '';
-                    document.getElementById('e1Driblimi').value = l.driblimi || '';
-                    document.getElementById('e1Goditja').value = l.goditja || '';
-                    document.getElementById('e1Mbrojtja').value = l.mbrojtja || '';
-                    document.getElementById('e1Vendosja').value = l.vendosja || '';
-
-                    document.getElementById('e1HistorikuMj').value = l.historikuMj || '';
-                    document.getElementById('e1Asimetria').value = l.asimetria || '';
-                    document.getElementById('e1Levizshmeria').value = l.levizshmeria || '';
-                    document.getElementById('e1Wellness').value = l.wellness || '';
-                    document.getElementById('e1Ekzaminimet').value = l.ekzaminimet || '';
-                    
-                    document.getElementById('e1FormTitle').innerText = "✏️ Edit Player Data";
-                    document.getElementById('btnAnuloE1').style.display = "inline-block";
-                }
-            };
-        }
-
-        function anuloEditE1() {
-            document.getElementById('e1EditId').value = '';
-            document.getElementById('e1Kodi').value = '';
-            document.getElementById('e1Emri').value = '';
-            document.getElementById('e1Roli').value = 'Portier';
-            document.getElementById('e1Datelindja').value = '';
-
-            document.getElementById('e1Antropo').value = '';
-            document.getElementById('e1Qendrueshmeria').value = '';
-            document.getElementById('e1Shpejtesia').value = '';
-            document.getElementById('e1Agjiteti').value = '';
-            document.getElementById('e1Fuqia').value = '';
-            document.getElementById('e1GPS').value = '';
-
-            document.getElementById('e1Pasimet').value = '';
-            document.getElementById('e1Driblimi').value = '';
-            document.getElementById('e1Goditja').value = '';
-            document.getElementById('e1Mbrojtja').value = '';
-            document.getElementById('e1Vendosja').value = '';
-
-            document.getElementById('e1HistorikuMj').value = '';
-            document.getElementById('e1Asimetria').value = '';
-            document.getElementById('e1Levizshmeria').value = '';
-            document.getElementById('e1Wellness').value = '';
-            document.getElementById('e1Ekzaminimet').value = '';
-
-            document.getElementById('e1FormTitle').innerText = "📝 Player Registration - First Team";
-            document.getElementById('btnAnuloE1').style.display = "none";
-        }
-
-        function fshijItem(storeName, id) {
-            if (confirm("Are you sure you want to delete this record?")) {
-                const tx = db.transaction([storeName], "readwrite");
-                tx.objectStore(storeName).delete(id);
-                tx.oncomplete = function() {
-                    renderAllTables();
-                    ngarkoLojtaretDropdowns();
-                };
-            }
-        }
-
-        function krijoSeksionetEAkademise() {
-            const grupet = ["U7", "U9", "U11", "U13", "U15", "U17", "U19"];
-            const kontrollova = document.getElementById('zona-ekipeve-akademise');
-            if(!kontrollova) return;
-            kontrollova.innerHTML = "";
-
-            grupet.forEach(g => {
-                kontrollova.innerHTML += `
-                    <div class="ekipi-bllok">
-                        <div class="ekipi-bllok-titulli">
-                            <span>⚽ REGISTRY OF AGE GROUP ${g}</span>
-                            <button class="btn-action bg-dark" onclick="shtoLojtarAkademie('${g}')">+ Add Player to ${g}</button>
-                        </div>
-                        <div class="table-container">
-                            <table>
-                                <thead><tr><th>Name & Surname</th><th>Birthdate</th><th>Position</th><th>Parent Contact</th><th>Payment Status</th><th>Action</th></tr></thead>
-                                <tbody id="table-akademia-${g}"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function shtoLojtarAkademie(grupi) {
-            const emri = prompt(`Enter full name of the player for ${grupi}:`);
-            if (!emri) return;
-            const datelindja = prompt("Enter Date of Birth (e.g. 2012-05-14):", "2012-01-01");
-            const primi = prompt("Position / Role:", "Midfielder");
-            const kontakti = prompt("Parent Phone Number:", "+355 69 ...");
-            const pagesa = prompt("Monthly Payment Status (Paid / Pending):", "Paid");
-
-            const obj = { grupi, emri, datelindja, primi, kontakti, pagesa };
-            const tx = db.transaction(["akademia_store"], "readwrite");
-            tx.objectStore("akademia_store").add(obj);
-            tx.oncomplete = function() {
-                renderAllTables();
-            };
-        }
-
-        function renderAllTables() {
-            if (!db) return;
-
-            // 1. Technical Staff
-            db.transaction(["stafi_store"], "readonly").objectStore("stafi_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-stafi');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td><strong>${i.kod || '-'}</strong></td>
-                        <td>${i.emri}</td>
-                        <td><span class="badge bg-blue">${i.roli}</span></td>
-                        <td>${i.kontrata || '-'}</td>
-                        <td>${i.data || '-'}</td>
-                        <td><span class="badge bg-purple">${i.licenca || 'N/A'}</span></td>
-                        <td style="font-size:8pt; color:#475569;">${i.historiku || 'No recorded history.'}</td>
-                        <td><button class="btn-action bg-red" onclick="fshijItem('stafi_store', ${i.id})">Delete</button></td>
-                    </tr>
-                `).join('');
-            };
-
-            // 2. Legal
-            db.transaction(["juridiku_store"], "readonly").objectStore("juridiku_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-juridiku');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td><strong>${i.kod || '-'}</strong></td>
-                        <td>${i.emri}</td>
-                        <td><strong style="color:var(--success);">€${i.vlera || '0'}</strong></td>
-                        <td>${i.skadenca || '-'}</td>
-                        <td>${i.klausola || '-'}</td>
-                        <td>${i.docBase64 ? `<a href="${i.docBase64}" target="_blank" class="file-link">📄 Download PDF</a>` : 'No Doc'}</td>
-                        <td><button class="btn-action bg-red" onclick="fshijItem('juridiku_store', ${i.id})">Delete</button></td>
-                    </tr>
-                `).join('');
-            };
-
-            // 3. Medical
-            db.transaction(["mjekesor_store"], "readonly").objectStore("mjekesor_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-mjekesor');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td><strong>${i.emri}</strong></td>
-                        <td>${i.diag}</td>
-                        <td><span class="badge ${i.rreziku.includes('I Lartë') ? 'bg-red' : (i.rreziku.includes('I Mesëm') ? 'bg-orange' : 'bg-green')}">${i.rreziku}</span></td>
-                        <td>${i.koha}</td>
-                        <td>${i.rekomandimi}</td>
-                        <td><button class="btn-action bg-red" onclick="fshijItem('mjekesor_store', ${i.id})">Delete</button></td>
-                    </tr>
-                `).join('');
-            };
-
-            // 4. Tactical Analysis (Collective)
-            db.transaction(["analiza_store"], "readonly").objectStore("analiza_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-analiza');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td><strong>${i.ndeshja}</strong></td>
-                        <td><span class="badge bg-blue">${i.moduli}</span></td>
-                        <td>${i.pikatForta}</td>
-                        <td>${i.pikatDobeta}</td>
-                        <td>${i.udhezimet}</td>
-                        <td><button class="btn-action bg-red" onclick="fshijItem('analiza_store', ${i.id})">Delete</button></td>
-                    </tr>
-                `).join('');
-            };
-
-            // 4b. Individual Match Performance
-            db.transaction(["analiza_ind_store"], "readonly").objectStore("analiza_ind_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-analiza-individuale');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td><strong>${i.emri}</strong></td>
-                        <td>${i.ndeshja}</td>
-                        <td><strong>${i.minuta}' min</strong></td>
-                        <td><span class="badge bg-purple">${i.aktivizimi}</span></td>
-                        <td>${i.zevendesimi || '-'}</td>
-                        <td><span class="match-tag">${i.teknika}</span></td>
-                        <td><span class="match-tag" style="background:#e0e7ff; border-color:#a5b4fc; color:#3730a3;">${i.taktika}</span></td>
-                        <td><button class="btn-action bg-red" onclick="fshijItem('analiza_ind_store', ${i.id})">Delete</button></td>
-                    </tr>
-                `).join('');
-            };
-
-            // 5. Physical Preparation
-            db.transaction(["atletik_store"], "readonly").objectStore("atletik_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-atletik');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td><strong>${i.emri}</strong></td>
-                        <td>${i.yoyo}</td>
-                        <td>${i.vmax}</td>
-                        <td>${i.fat}</td>
-                        <td><span class="badge bg-blue">${i.gps}</span></td>
-                        <td><button class="btn-action bg-red" onclick="fshijItem('atletik_store', ${i.id})">Delete</button></td>
-                    </tr>
-                `).join('');
-            };
-
-            // 6. First Team
-            db.transaction(["ekipi1_store"], "readonly").objectStore("ekipi1_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-ekipi1');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td style="text-align:center;">
-                            ${i.fotoBase64 ? `<img src="${i.fotoBase64}" class="img-thumb">` : `<div class="img-thumb" style="background:#e2e8f0; display:inline-block;"></div>`}
-                        </td>
-                        <td><strong>${i.kod || '-'}</strong></td>
-                        <td>
-                            <strong>${i.emri}</strong><br>
-                            <small style="color:#64748b;">DOB: ${i.datelindja || 'N/A'}</small>
-                        </td>
-                        <td><span class="badge bg-blue">${i.roli}</span></td>
-                        <td style="font-size:8pt; line-height:1.4;">
-                            <strong>Antropo:</strong> ${i.antropo || '-'}<br>
-                            <strong>Endurance:</strong> ${i.qendrueshmeria || '-'}<br>
-                            <strong>Speed:</strong> ${i.shpejtesia || '-'}<br>
-                            <strong>Agility:</strong> ${i.agjiteti || '-'}<br>
-                            <strong>Power:</strong> ${i.fuqia || '-'}<br>
-                            <strong>GPS:</strong> ${i.gps || '-'}
-                        </td>
-                        <td style="font-size:8pt; line-height:1.4;">
-                            <strong>Passes:</strong> ${i.pasimet || '-'}<br>
-                            <strong>Dribbling:</strong> ${i.driblimi || '-'}<br>
-                            <strong>Shooting:</strong> ${i.goditja || '-'}<br>
-                            <strong>Defense:</strong> ${i.mbrojtja || '-'}<br>
-                            <strong>Positioning:</strong> ${i.vendosja || '-'}
-                        </td>
-                        <td style="font-size:8pt;">
-                            ${i.historikuMj ? `<span class="med-tag">${i.historikuMj}</span>` : 'No injuries'}
-                            <div style="margin-top:4px; color:#475569;">
-                                <strong>Wellness:</strong> ${i.wellness || '-'}<br>
-                                <strong>Exams:</strong> ${i.ekzaminimet || '-'}
-                            </div>
-                        </td>
-                        <td>
-                            <div style="display:flex; flex-direction:column; gap:4px;">
-                                <button class="btn-action" style="background:#0284c7; padding:4px 8px; font-size:7.5pt;" onclick="printoLojtarinE1(${i.id})">🖨️ File Card</button>
-                                <button class="btn-action" style="background:#d97706; padding:4px 8px; font-size:7.5pt;" onclick="ndryshoLojtarE1(${i.id})">✏️ Edit</button>
-                                <button class="btn-action bg-red" style="padding:4px 8px; font-size:7.5pt;" onclick="fshijItem('ekipi1_store', ${i.id})">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('');
-            };
-
-            // 7. Academy
-            db.transaction(["akademia_store"], "readonly").objectStore("akademia_store").getAll().onsuccess = function(e) {
-                const data = e.target.result;
-                ["U7", "U9", "U11", "U13", "U15", "U17", "U19"].forEach(g => {
-                    const tb = document.getElementById(`table-akademia-${g}`);
-                    if(tb) {
-                        const me = data.filter(d => d.grupi === g);
-                        tb.innerHTML = me.map(i => `
-                            <tr>
-                                <td><strong>${i.emri}</strong></td>
-                                <td>${i.datelindja || '-'}</td>
-                                <td>${i.primi || '-'}</td>
-                                <td>${i.kontakti || '-'}</td>
-                                <td><span class="badge ${i.pagesa === 'Paid' ? 'bg-green' : 'bg-red'}">${i.pagesa || 'Pending'}</span></td>
-                                <td><button class="btn-action bg-red" onclick="fshijItem('akademia_store', ${i.id})">Delete</button></td>
-                            </tr>
-                        `).join('');
-                    }
-                });
-            };
-
-            // 8. President Requests
-            db.transaction(["kerkesat_store"], "readonly").objectStore("kerkesat_store").getAll().onsuccess = function(e) {
-                const tb = document.getElementById('table-kerkesat-aktive');
-                if(tb) tb.innerHTML = e.target.result.map(i => `
-                    <tr>
-                        <td>${i.data}</td>
-                        <td><strong>${i.titulli}</strong></td>
-                        <td><span class="badge bg-purple">${i.dep}</span></td>
-                        <td><span class="badge ${i.status === 'Sent' ? 'bg-orange' : 'bg-green'}">${i.status}</span></td>
-                        <td><button class="btn-action bg-blue" onclick="shikoRaportinModal(${i.id})">📖 View Full Report</button></td>
-                    </tr>
-                `).join('');
-            };
-        }
-
-        function eksportoManiDatabase() {
-            if(!db) return;
-            const dataBackup = {};
-            let count = 0;
-            stores.forEach(s => {
-                db.transaction([s], "readonly").objectStore(s).getAll().onsuccess = function(e) {
-                    dataBackup[s] = e.target.result;
-                    count++;
-                    if(count === stores.length) {
-                        const blob = new Blob([JSON.stringify(dataBackup, null, 2)], {type : 'application/json'});
-                        const a = document.createElement('a');
-                        a.href = URL.createObjectURL(blob);
-                        a.download = `ManiFootball_Backup_${new Date().toISOString().split('T')[0]}.json`;
-                        a.click();
-                    }
-                };
-            });
-        }
-
-        function hapModalinEPageses() {
-            alert("💳 Opening Payment Gateway...\n\nYou can select the plan and complete the subscription renewal.");
-            document.getElementById('login-overlay').style.display = 'flex';
-            document.getElementById('pjesa-autentikimit').style.display = 'none';
-            document.getElementById('pjesa-skaduar').style.display = 'block';
-        }
-
-        function ekzekutoPagesenSimuluar(dite) {
-            let sot = new Date();
-            sot.setDate(sot.getDate() + dite);
-            PLAN_CONFIG.skadenca = sot.toISOString().split('T')[0];
-            PLAN_CONFIG.statusi = "Aktiv";
-            ruajPlaninInStorage();
-            verifikoAbonimin();
-            alert("✓ Payment processed successfully via Stripe/Card! Access for all departments is unlocked.");
-            document.getElementById('login-overlay').style.display = 'none';
-        }
-
-        function ruajKonfiguriminEPlani() {
-            PLAN_CONFIG.lloji = document.getElementById('cfgPlaniLloji').value;
-            PLAN_CONFIG.skadenca = document.getElementById('cfgDataSkadences').value;
-            PLAN_CONFIG.statusi = document.getElementById('cfgStatusiLicences').value;
-            ruajPlaninInStorage();
-            verifikoAbonimin();
-            alert("✓ Subscription plan updated successfully!");
-        }
+        // Zbaton përkthimin menjëherë pas ngarkimit të faqes
+        document.addEventListener('DOMContentLoaded', applyTranslations);
     </script>
 </body>
 </html>
