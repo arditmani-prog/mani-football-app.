@@ -1514,3 +1514,15 @@
     </script>
 </body>
 </html>
+<!-- Libraria e Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // Konfigurimi i lidhjes me Supabase
+  const SUPABASE_URL = 'https://viiryqzmbedeuendtqsf.supabase.co';
+  
+  // Zëvendësoni tekstin e mëposhtëm me çelësin 'anon' që kopjuat te Legacy keys
+  const SUPABASE_KEY = 'KËTU_NGJISNI_ÇELËSIN_ANON'; 
+
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
