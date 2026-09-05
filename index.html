@@ -1553,7 +1553,58 @@
             alert("Database export in progress...");
         }
     </script>
-</body>
+<!-- Libraria e Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // 1. Konfigurimi i Supabase
+  const SUPABASE_URL = 'https://viiryqzmbedeuendtqsf.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_6uXWpoXTfa2xvjHaFYEzMg_qLI0o...'; // Vendosni çelësin tuaj Publishable
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // 2. Ruajtja e lojtarit në Supabase Cloud
+  async function savePlayerToCloud(playerObj) {
+    const { data, error } = await db
+      .from('players')
+      .insert([{ data: playerObj }]);
+
+    if (error) {
+      console.error('Gabim në Supabase:', error);
+      alert('Gabim gjatë ruajtjes në cloud: ' + error.message);
+    } else {
+      alert('Lojtari u ruajt me sukses në cloud!');
+      loadPlayersFromCloud();
+    }
+  }
+
+  // 3. Shkarkimi i lojtarëve nga Supabase Cloud
+  async function loadPlayersFromCloud() {
+    const { data, error } = await db
+      .from('players')
+      .select('*')
+      .order('id', { ascending: false });
+
+    if (error) {
+      console.error('Gabim gjatë ngarkimit:', error);
+      return;
+    }
+
+    if (data) {
+      // Merr vetëm strukturën e lojtarëve nga JSON
+      const playersList = data.map(row => row.data);
+      
+      // Nëse aplikacioni juaj përdor një funksion ekzistues për të renderuar tabelën:
+      if (typeof renderPlayerTable === 'function') {
+        renderPlayerTable(playersList);
+      } else if (typeof displayPlayers === 'function') {
+        displayPlayers(playersList);
+      }
+    }
+  }
+
+  // Ngarko lojtarët nga Cloud sa hapet faqja (në kompjuter apo celular)
+  document.addEventListener('DOMContentLoaded', loadPlayersFromCloud);
+</script></body>
 </html>
 <!-- Libraria e Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
