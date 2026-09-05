@@ -752,7 +752,48 @@
                             .section-title { font-size: 11pt; font-weight: bold; color: #1e3a8a; border-left: 4px solid #1e3a8a; padding-left: 8px; margin: 15px 0 10px 0; text-transform: uppercase; background: #e0e7ff; padding: 5px; }
                             .box-detail { background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-size: 9pt; margin-bottom: 15px; }
                         </style>
-                    </head>
+                    </head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://viiryqzmbedeuendtqsf.supabase.co';
+  const SUPABASE_KEY = 'KËTU_NGJISNI_ANON_KEY'; // Vendosni Publishable / Anon Key tuaj
+
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // Funksioni për të ruajtur lojtarin në Supabase
+  async function savePlayerToCloud(playerData) {
+    const { data, error } = await db
+      .from('players')
+      .insert([{ data: playerData }]);
+    
+    if (error) {
+      console.error('Gabim gjatë ruajtjes:', error.message);
+      alert('Gabim në ruajtje: ' + error.message);
+    } else {
+      alert('Lojtari u ruajt me sukses në cloud!');
+      loadPlayersFromCloud(); // Rifreskon tabelën
+    }
+  }
+
+  // Funksioni për të ngarkuar lojtarët nga Supabase
+  async function loadPlayersFromCloud() {
+    const { data, error } = await db
+      .from('players')
+      .select('*');
+
+    if (error) {
+      console.error('Gabim gjatë leximit:', error.message);
+      return;
+    }
+
+    if (data) {
+      // Këtu i kalojmë të dhënat te tabela e aplikacionit tuaj
+      console.log('Lojtarët nga cloud:', data);
+    }
+  }
+
+  // Thirret automatikisht kur hapet faqja
+  document.addEventListener('DOMContentLoaded', loadPlayersFromCloud);
+</script>
                     <body>
                         <div class="header">
                             <h1>MANI FOOTBALL DECISION INTELLIGENCE PLATFORM</h1>
