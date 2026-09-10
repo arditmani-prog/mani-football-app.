@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mani Football Decision Intelligence Platform - Complete Edition</title>
     <script src="https://js.stripe.com/v3/"></script>
-    <style>
+    <style><script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
         :root {
             --primary: #1e3a8a;
             --dark: #0f172a;
@@ -1708,6 +1709,14 @@
             verifikoAbonimin();
             alert("✓ Subscription plan updated successfully!");
         }
-    </script>
+    </script><script>
+  // Lidhja zyrtare me bazën e të dhënave në Cloud (Supabase)
+  const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
+
+  // Inicializimi i klientit
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const db = supabaseClient; // Për pajtueshmëri me të gjitha funksionet ekzistuese
+</script>
 </body>
 </html>
