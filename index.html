@@ -752,17 +752,17 @@
                             .section-title { font-size: 11pt; font-weight: bold; color: #1e3a8a; border-left: 4px solid #1e3a8a; padding-left: 8px; margin: 15px 0 10px 0; text-transform: uppercase; background: #e0e7ff; padding: 5px; }
                             .box-detail { background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-size: 9pt; margin-bottom: 15px; }
                         </style>
-                    </head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Bibliotekat e nevojshme pa prekur dizajnin -->
+                   <!-- Bibliotekat zyrtare të Cloud & Excel -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <script>
-  // Initializimi i Supabase me çelësin tuaj zyrtar
+  // Lidhja zyrtare me Cloud Supabase
   const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
-  const SUPABASE_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNzMwMjEsImV4cCI6MjEwMTY0OTAyMX0.vCi0s9xIb8uAzKe-KcWPoBVlfwY84y6SSg9KTt9s3PE
-  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
 
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
   // Fjalëkalimet e departamenteve
   const DEPARTMENT_PASSWORDS = {
     'stafi_teknik': 'stafi2026',
