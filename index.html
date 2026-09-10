@@ -1709,7 +1709,64 @@
             verifikoAbonimin();
             alert("✓ Subscription plan updated successfully!");
         }
-    </script>
+    </script><!-- Sync Engine për Supabase & LocalStorage -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function() {
+  const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
+  
+  if (typeof supabase !== 'undefined') {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // 1. Ngarkimi i të dhënave nga Cloud sapo hapet faqe në çdo pajisje
+    async function syncFromCloud() {
+      try {
+        const { data, error } = await sb.from('app_data').select('*').eq('id', 1).single();
+        if (data && data.data) {
+          const cloudStore = data.data;
+          let updated = false;
+          for (const key in cloudStore) {
+            if (localStorage.getItem(key) !== cloudStore[key]) {
+              localStorage.setItem(key, cloudStore[key]);
+              updated = true;
+            }
+          }
+          if (updated) {
+            console.log("Të dhënat u sinkronizuan nga Cloud!");
+            // Rifreskon pamjen pa e ngarkuar faqen nga e para
+            if (typeof renderAll === 'function') renderAll();
+            else if (typeof loadData === 'function') loadData();
+          }
+        }
+      } catch (err) {
+        console.error("Gabim në sinkronizim nga Cloud:", err);
+      }
+    }
+
+    // 2. Dërgimi automatik i të dhënave te Cloud sa herë ndryshohet jot diçka
+    async function syncToCloud() {
+      try {
+        const localData = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          localData[key] = localStorage.getItem(key);
+        }
+        await sb.from('app_data').upsert({ id: 1, data: localData, updated_at: new Date() });
+        console.log("U ruajt automatikisht në Cloud!");
+      } catch (err) {
+        console.error("Gabim në ruajtje në Cloud:", err);
+      }
+    }
+
+    // Ekzekutimi gjatë hapjes dhe ruajtjes
+    window.addEventListener('load', syncFromCloud);
+    
+    // Ruan automatikisht në Cloud çdo 5 sekonda nëse ka ndryshime
+    setInterval(syncToCloud, 5000);
+  }
+})();
+</script>
 </body<script>
   // 1. Konfigurimi i Supabase
   const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
