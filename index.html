@@ -753,11 +753,47 @@
                             .box-detail { background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; font-size: 9pt; margin-bottom: 15px; }
                         </style>
                     </head><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Bibliotekat e nevojshme pa prekur dizajnin -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
-  const SUPABASE_KEY = 'NGJISNI_KETU_CELESIN_ANON_PUBLIC_QE_FILLON_ME_EYJ'; 
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
+<script>
+  // Initializimi i Supabase me çelësin tuaj zyrtar
+  const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
+  const SUPABASE_KEY = 'EYJ_CELESI_JUAJ_ANON_PUBLIC_KETU'; // Zëvendësojeni me çelësin anon public
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // Fjalëkalimet e departamenteve
+  const DEPARTMENT_PASSWORDS = {
+    'stafi_teknik': 'stafi2026',
+    'mjekesor': 'mjeku2026',
+    'skauting': 'skaut2026',
+    'ekipi_pare': 'ekipi1'
+  };
+
+  // Funksioni për verifikimin e fjalëkalimit
+  function checkDeptPassword(dept, pwd) {
+    if (DEPARTMENT_PASSWORDS[dept] === pwd) {
+      sessionStorage.setItem('auth_' + dept, 'true');
+      return true;
+    }
+    alert('Fjalëkalimi i gabuar!');
+    return false;
+  }
+
+  // Funksioni për shkarkimin e listës së Ekipit të Parë në Excel
+  function exportTeamToExcel(playersData) {
+    const ws = XLSX.utils.json_to_sheet(playersData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Ekipi i Parë");
+    XLSX.writeFile(wb, "Lista_Lojtareve_KF_Shiroka.xlsx");
+  }
+
+  // Funksioni për printim
+  function printTeamList() {
+    window.print();
+  }
+</script>
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
   async function savePlayerToCloud(playerData) {
