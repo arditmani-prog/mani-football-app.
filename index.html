@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mani Football Decision Intelligence Platform - Complete Edition</title>
     <script src="https://js.stripe.com/v3/"></script>
-    <style><script src="https://js.stripe.com/v3/"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
         :root {
             --primary: #1e3a8a;
             --dark: #0f172a;
@@ -1709,22 +1709,34 @@
             verifikoAbonimin();
             alert("✓ Subscription plan updated successfully!");
         }
-    </script><script>
-  // Lidhja zyrtare me bazën e të dhënave në Cloud (Supabase)
+    </script>
+</body<script>
+  // 1. Konfigurimi i Supabase
   const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
+  const supabaseDb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // Inicializimi i klientit
-  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  const db = supabaseClient; // Për pajtueshmëri me të gjitha funksionet ekzistuese
-</script>
-<script>
-  // Lidhja zyrtare me bazën e të dhënave në Cloud (Supabase)
-  const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
+  // 2. Ruajtja automatike në Cloud sa herë ndryshohen të dhënat
+  async function ruajNeCloud(emriTabeles, teDhenat) {
+    try {
+      await supabaseDb.from(emriTabeles).upsert({ id: 1, data: teDhenat });
+      console.log('U ruajt me sukses në Supabase!');
+    } catch (e) {
+      console.error('Gabim gjatë ruajtjes:', e);
+    }
+  }
 
-  // Inicializimi i klientit
-  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  const db = supabaseClient; // Për pajtueshmëri me të gjitha funksionet ekzistuese
-</script></body>
+  // 3. Shkarkimi i të dhënave sa herë hapet faqja në çdo pajisje
+  async function ngarkoNgaCloud(emriTabeles) {
+    try {
+      const { data, error } = await supabaseDb.from(emriTabeles).select('data').eq('id', 1).single();
+      if (data && data.data) {
+        return data.data;
+      }
+    } catch (e) {
+      console.error('Gabim gjatë ngarkimit:', e);
+    }
+    return null;
+  }
+</script>>
 </html>
