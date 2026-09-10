@@ -1767,13 +1767,14 @@
   }
 })();
 </script>
-</body<script>
+
+<script>
   // 1. Konfigurimi i Supabase
   const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
   const supabaseDb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // 2. Ruajtja automatike në Cloud sa herë ndryshohen të dhënat
+  // 2. Ruajtja automatike në Cloud
   async function ruajNeCloud(emriTabeles, teDhenat) {
     try {
       await supabaseDb.from(emriTabeles).upsert({ id: 1, data: teDhenat });
@@ -1783,7 +1784,7 @@
     }
   }
 
-  // 3. Shkarkimi i të dhënave sa herë hapet faqja në çdo pajisje
+  // 3. Shkarkimi i të dhënave
   async function ngarkoNgaCloud(emriTabeles) {
     try {
       const { data, error } = await supabaseDb.from(emriTabeles).select('data').eq('id', 1).single();
@@ -1795,5 +1796,8 @@
     }
     return null;
   }
-</script>>
+</script>
+
+</body>
 </html>
+</html
