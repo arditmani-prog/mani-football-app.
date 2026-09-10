@@ -1757,45 +1757,38 @@
       } catch (err) {
         console.error("Gabim në ruajtje në Cloud:", err);
       }
-    }
-
-    // Ekzekutimi gjatë hapjes dhe ruajtjes
-    window.addEventListener('load', syncFromCloud);
-    
-    // Ruan automatikisht në Cloud çdo 5 sekonda nëse ka ndryshime
-    setInterval(syncToCloud, 5000);
-  }
-})();
-</script>
-
+   <!-- INTEGRIMI PËRFUNDIMTAR I SUPABASE -->
 <script>
-  // 1. Konfigurimi i Supabase
-  const SUPABASE_URL = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
-  const supabaseDb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  (function() {
+    // 1. Konfigurimi i bazës së të dhënave
+    const URL_SUPA = 'https://nwjcbhqjtbxlpzftgrxa.supabase.co';
+    const KEY_SUPA = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53amNiaHFqdGJ4bHB6ZnRncnhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNzIwMzAsImV4cCI6MjA1Njg0ODAzMH0.8-b6Q2bV3e0ZqE3S9Ua8oR6kX1A4C9uJ2W_Vf3Z_Y8M';
+    
+    if (typeof supabase !== 'undefined') {
+      const dbCloud = supabase.createClient(URL_SUPA, KEY_SUPA);
 
-  // 2. Ruajtja automatike në Cloud
-  async function ruajNeCloud(emriTabeles, teDhenat) {
-    try {
-      await supabaseDb.from(emriTabeles).upsert({ id: 1, data: teDhenat });
-      console.log('U ruajt me sukses në Supabase!');
-    } catch (e) {
-      console.error('Gabim gjatë ruajtjes:', e);
-    }
-  }
+      // Funksioni për ruajtje në cloud
+      window.ruajNeCloud = async function(emriTabeles, teDhenat) {
+        try {
+          await dbCloud.from(emriTabeles).upsert({ id: 1, data: teDhenat });
+          console.log('U ruajt me sukses në Supabase!');
+        } catch (e) {
+          console.error('Gabim gjatë ruajtjes:', e);
+        }
+      };
 
-  // 3. Shkarkimi i të dhënave
-  async function ngarkoNgaCloud(emriTabeles) {
-    try {
-      const { data, error } = await supabaseDb.from(emriTabeles).select('data').eq('id', 1).single();
-      if (data && data.data) {
-        return data.data;
-      }
-    } catch (e) {
-      console.error('Gabim gjatë ngarkimit:', e);
+      // Funksioni për ngarkim nga cloud
+      window.ngarkoNgaCloud = async function(emriTabeles) {
+        try {
+          const { data, error } = await dbCloud.from(emriTabeles).select('data').eq('id', 1).single();
+          if (data && data.data) return data.data;
+        } catch (e) {
+          console.error('Gabim gjatë ngarkimit:', e);
+        }
+        return null;
+      };
     }
-    return null;
-  }
+  })();
 </script>
 
 </body>
