@@ -1788,7 +1788,33 @@
         return null;
       };
     }
-  })();
+  })();// Sinkronizimi automatik dyanshëm (Komputer <-> Cloud <-> Telefon)
+  async function sinkronizoGjithcka() {
+    // 1. Lexon të dhënat nga Cloud kur hapet faqe
+    const cloudData = await window.ngarkoNgaCloud('app_data');
+    if (cloudData) {
+      for (const key in cloudData) {
+        localStorage.setItem(key, cloudData[key]);
+      }
+      console.log("Të dhënat u sinkronizuan nga Cloud!");
+    }
+  }
+
+  // Ruajtja automatike në Cloud sa herë ka ndryshime në LocalStorage
+  async function ruajGjithckaInCloud() {
+    const localStore = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      localStore[key] = localStorage.getItem(key);
+    }
+    await window.ruajNeCloud('app_data', localStore);
+  }
+
+  // Ekzekutohet sapo hapet faqe në çdo pajisje
+  window.addEventListener('load', sinkronizoGjithcka);
+
+  // Ruan automatikisht te Supabase çdo 5 sekonda
+  setInterval(ruajGjithckaInCloud, 5000);
 </script>
 
 </body>
